@@ -130,7 +130,7 @@ public class Trie {
 	 * @param node
 	 * @return
 	 */
-	public void wordsFinderTraversal(Node node) {
+	public void dfsIterative(Node node) {
 	
 		Stack<Node> stack = new Stack<Node>();
 		stack.add(node);

@@ -8,7 +8,7 @@ import java.io.IOException;
 public class App {
 	public static void main(String[] args) {
 		
-		File fileName = new File("Input/testCase2");
+		File fileName = new File("Input/testCase1");
 
 		Trie trie = new Trie();
 
@@ -29,7 +29,7 @@ public class App {
 			
 			trie.dfs(trie.root);
 			trie.initFalse(trie.root);
-			//trie.wordsFinderTraversal(trie.root);
+			//trie.dfsIterative(trie.root);
 
 		} catch (IOException e) {
 			e.printStackTrace();
