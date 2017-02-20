@@ -17,6 +17,8 @@ For example we can make our own Contacts application! The application must perfo
 - find partial, where *partial* is a string denoting a partial name to search the application for. It must count the number of contacts starting with *partial* and print the count on a new line.
 
 Given *n* sequential *add* and *find* operations, perform each operation in order.
+
+**TestCase1**
 ``` 
 4
 add hack
@@ -25,7 +27,12 @@ find hac
 find hak 
 ```
 
-For each find partial operation, print the number of contact names starting with *partial* on a new line.
+For each find partial operation, print the number of contact names starting with *partial* on a new line:
+``` 
+2
+0
+```
+
 ``` java
 public class App {
 	public static void main(String[] args) {
