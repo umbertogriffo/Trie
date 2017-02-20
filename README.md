@@ -42,7 +42,7 @@ Example of Main Java Class:
 public class App {
 	public static void main(String[] args) {
 		
-		File fileName = new File("Input/testCase1");
+		File fileName = new File("Input/testCase4");
 
 		Trie trie = new Trie();
 
