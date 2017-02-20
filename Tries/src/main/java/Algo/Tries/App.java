@@ -10,7 +10,7 @@ public class App {
 
 		File fileName = new File("Input/testCase4");
 
-		Trie trie = new Trie();
+		Trie trie = new Trie(true);
 
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			br.readLine();
@@ -27,6 +27,7 @@ public class App {
 			}
 
 			trie.show();
+			System.out.println(trie.getWords());
 
 		} catch (IOException e) {
 			e.printStackTrace();

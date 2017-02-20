@@ -6,7 +6,7 @@ import java.util.Map;
 public class Node{
 
     private char c;
-    // to count number of words
+    // to count how many words starting with prefix
     private int count;
     private boolean isVisited; 
     private boolean isLeaf;

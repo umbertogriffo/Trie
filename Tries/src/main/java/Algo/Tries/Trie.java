@@ -5,10 +5,20 @@ import java.util.Stack;
 
 public class Trie {
 
-	public Node root;
+	private final String REGEX_ONLY_LETTERS = "[^a-zA-Z]+";
 	
-	public Trie() {
+	private Node root;
+	
+	// current number of unique words in trie
+	private int words;
+	
+	// if this is a case sensitive trie
+	private boolean caseSensitive;
+	
+	public Trie(boolean caseSensitive) {
 		root = new Node();
+		this.words = 0;
+		this.caseSensitive = caseSensitive;
 	}
 
 	/**
@@ -16,6 +26,8 @@ public class Trie {
 	 * @param word
 	 */
 	public void insert(String word) {
+		word = word.trim().replaceAll(REGEX_ONLY_LETTERS, "");
+		word = this.caseSensitive ? word : word.toLowerCase();
 		Map<Character, Node> children = root.children;
 		for (int i = 0; i < word.length(); i++) {
 			char c = word.charAt(i);
@@ -30,8 +42,11 @@ public class Trie {
 			children = node.children;
 
 			// set leaf node
-			if (i == word.length() - 1)
+			if (i == word.length() - 1){
 				node.setLeaf(true);
+				this.words++;
+			}
+			// how many words starting with prefix
 			node.setCount(node.getCount() + 1);
 		}
 	}
@@ -42,6 +57,7 @@ public class Trie {
 	 * @return
 	 */
 	public Node searchNode(String word) {
+		word = this.caseSensitive ? word : word.toLowerCase();
 		Map<Character, Node> children = root.children;
 		Node node = null;
 		for (int i = 0; i < word.length(); i++) {
@@ -161,6 +177,22 @@ public class Trie {
 				}
 			}
 		}
+	}
+
+	public int getWords() {
+		return words;
+	}
+
+	public void setWords(int words) {
+		this.words = words;
+	}
+
+	public boolean isCaseSensitive() {
+		return caseSensitive;
+	}
+
+	public void setCaseSensitive(boolean caseSensitive) {
+		this.caseSensitive = caseSensitive;
 	}
 
 }

@@ -26,7 +26,7 @@ public class AppTest extends TestCase {
 	}
 	
 	public void testBasic() {
-		Trie trie = new Trie();
+		Trie trie = new Trie(false);
 		trie.insert("hack");
 		trie.insert("hackerrank");
 		assertTrue(trie.countWordStartsWith("hac") == 2);
@@ -34,7 +34,7 @@ public class AppTest extends TestCase {
 	}
 	
 	public void testDuplicate() {
-		Trie trie = new Trie();
+		Trie trie = new Trie(false);
 		trie.insert("s");
 		trie.insert("ss");
 		trie.insert("sss");
