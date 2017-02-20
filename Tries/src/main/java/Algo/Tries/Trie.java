@@ -109,6 +109,18 @@ public class Trie {
 	}
 	
 	/**
+	 * Show The Trie
+	 */
+	public void show(){
+		
+		if(this.root!=null){
+			this.dfs(this.root);
+			this.initFalse(this.root);
+		}
+	
+	}
+	
+	/**
 	 * Recursive Depth-first search (DFS)
 	 * @param node
 	 */
@@ -116,7 +128,7 @@ public class Trie {
 		node.setVisited(true);
 		for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
 			if (entry.getValue().isVisited() == false) {
-				System.out.print(entry.getValue().getC() + "\t");
+				System.out.print("("+entry.getValue().getC() + ":" +entry.getValue().getCount() +")\t->\t");
 				if (entry.getValue().isLeaf()) {
 					System.out.println("*");
 				}
