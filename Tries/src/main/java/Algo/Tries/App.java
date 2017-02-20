@@ -8,7 +8,7 @@ import java.io.IOException;
 public class App {
 	public static void main(String[] args) {
 		
-		File fileName = new File("Input/testCase1");
+		File fileName = new File("Input/testCase4");
 
 		Trie trie = new Trie();
 
@@ -29,7 +29,6 @@ public class App {
 			
 			trie.dfs(trie.root);
 			trie.initFalse(trie.root);
-			//trie.dfsIterative(trie.root);
 
 		} catch (IOException e) {
 			e.printStackTrace();
