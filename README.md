@@ -16,15 +16,19 @@ For example we can make our own Contacts application! The application must perfo
 - add name, where *name* is a string denoting a contact name. This must store *name* as a new contact in the application.
 - find partial, where *partial* is a string denoting a partial name to search the application for. It must count the number of contacts starting with *partial* and print the count on a new line.
 
-Given *n* sequential *add* and *find* operations, perform each operation in order.
+Given *n* sequential *add* and *find* operations, perform each operation in order:
 
-**TestCase1**
 ``` 
-4
-add hack
-add hackerrank
-find hac
-find hak 
+9
+add umberto
+add roberto
+add emanuele
+add tushare
+add flavio
+add massimiliano
+add maurizio
+find ma
+find tup
 ```
 
 For each find partial operation, print the number of contact names starting with *partial* on a new line:
@@ -33,6 +37,7 @@ For each find partial operation, print the number of contact names starting with
 0
 ```
 
+Example of Main Java Class:
 ``` java
 public class App {
 	public static void main(String[] args) {
