@@ -2,13 +2,14 @@
 * Author: Umberto Griffo
 * Twitter: @UmbertoGriffo
 
-**Trie** is an efficient information retrieval data structure. Using **trie**, search complexities can be brought to optimal limit (key length). If we store keys in binary search tree, a well balanced BST will need time proportional to **M * log N**, where **M** is maximum string length and **N** is number of keys in tree. Using trie, we can search the key in **O(M)** time. However the penalty is on trie storage requirements.
+**Trie** is an efficient information retrieval data structure that we can use to search a word in **O(M)** time, where **M** is maximum string length. However the penalty is on trie storage requirements.
 
 The following picture shows a trie with the keys "A","to", "tea", "ted", "ten", "i", "in", and "inn"
 <p align="center">
   <img src="https://github.com/umbertogriffo/Trie/blob/master/250px-Trie_example.svg.png"/>
 </p>
 
+A common application of a **trie** is storing a **predictive text** or **autocomplete dictionary**, such as found on a mobile telephone. Such applications take advantage of a trie's ability to quickly search for, insert, and delete entries.
+
 ###References
 - https://en.wikipedia.org/wiki/Trie
-- http://www.geeksforgeeks.org/trie-insert-and-search/
