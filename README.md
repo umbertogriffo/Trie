@@ -2,7 +2,7 @@
 * Author: Umberto Griffo
 * Twitter: @UmbertoGriffo
 
-**Trie** is an efficient information retrieval data structure that we can use to search a word in **O(M)** time, where **M** is maximum string length. However the penalty is on trie storage requirements.
+**Trie**[1] is an efficient information retrieval data structure that we can use to search a word in **O(M)** time, where **M** is maximum string length. However the penalty is on trie storage requirements.
 
 The following picture shows a trie with the keys "A","to", "tea", "ted", "ten", "i", "in", and "inn"
 <p align="center">
@@ -11,7 +11,8 @@ The following picture shows a trie with the keys "A","to", "tea", "ted", "ten", 
 
 A common application of a **trie** is storing a **predictive text** or **autocomplete dictionary**, such as found on a mobile telephone. Such applications take advantage of a trie's ability to quickly search for, insert, and delete entries.
 
-For example we can make our own Contacts application! The application must perform two types of operations:
+For example we can make our own Contacts application[2]. 
+The application must perform two types of operations:
 
 - add name, where *name* is a string denoting a contact name. This must store *name* as a new contact in the application.
 - find partial, where *partial* is a string denoting a partial name to search the application for. It must count the number of contacts starting with *partial* and print the count on a new line.
@@ -68,5 +69,5 @@ public class App {
 }
 ``` 
 ###References
-- https://en.wikipedia.org/wiki/Trie
-- https://www.hackerrank.com/challenges/contacts
+- [1] https://en.wikipedia.org/wiki/Trie
+- [2] https://www.hackerrank.com/challenges/contacts
