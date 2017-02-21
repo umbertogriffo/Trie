@@ -10,6 +10,7 @@ public class Node{
     private int count;
     private boolean isVisited; 
     private boolean isLeaf;
+    private Node parent;
 
     Map<Character, Node> children = new HashMap<Character, Node>();
 
@@ -51,6 +52,14 @@ public class Node{
 
 	public void setLeaf(boolean isLeaf) {
 		this.isLeaf = isLeaf;
+	}
+
+	public Node getParent() {
+		return parent;
+	}
+
+	public void setParent(Node parent) {
+		this.parent = parent;
 	}
 
 }
