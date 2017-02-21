@@ -8,8 +8,9 @@ import java.io.IOException;
 public class App {
 	public static void main(String[] args) {
 
-		File fileName = new File("Input/testCase4");
-
+		File fileName = new File("Input/testCase5");
+		
+		// this is a case sensitive trie
 		Trie trie = new Trie(true);
 
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -20,14 +21,14 @@ public class App {
 				String op = in[0];
 				String contact = in[1];
 				if (op.equals("add")) {
-					trie.insert(contact);
+					trie.add(contact);
 				} else if (op.equals("find")) {
 					System.out.println(trie.countWordStartsWith(contact));
 				}
 			}
 
 			trie.show();
-			System.out.println(trie.getWords());
+			System.out.println(trie.getNumberOfWords());
 
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -2,30 +2,37 @@ package Algo.Tries;
 
 import java.util.Map;
 import java.util.Stack;
-
+/**
+ * Trie(https://en.wikipedia.org/wiki/Trie) is an efficient information retrieval data structure that we can use to search a word in O(M) time, where M is maximum string length. 
+ * However the penalty is on trie storage requirements.
+ * @author Umberto
+ *
+ */
 public class Trie {
 
 	private final String REGEX_ONLY_LETTERS = "[^a-zA-Z]+";
 	
-	private Node root;
-	
+	private Node root;	
 	// current number of unique words in trie
-	private int words;
-	
+	private int numOfwords;	
 	// if this is a case sensitive trie
 	private boolean caseSensitive;
 	
+	/**
+	 * Constructor
+	 * @param caseSensitive set if this is a case sensitive trie
+	 */
 	public Trie(boolean caseSensitive) {
 		root = new Node();
-		this.words = 0;
-		this.caseSensitive = caseSensitive;
+		setNumberOfWords(0);
+		setCaseSensitive(caseSensitive);
 	}
 
 	/**
 	 * Inserts a word into the trie.
 	 * @param word
 	 */
-	public void insert(String word) {
+	public void add(String word) {
 		word = word.trim().replaceAll(REGEX_ONLY_LETTERS, "");
 		word = this.caseSensitive ? word : word.toLowerCase();
 		Map<Character, Node> children = root.children;
@@ -44,7 +51,7 @@ public class Trie {
 			// set leaf node
 			if (i == word.length() - 1){
 				node.setLeaf(true);
-				this.words++;
+				this.numOfwords++;
 			}
 			// how many words starting with prefix
 			node.setCount(node.getCount() + 1);
@@ -73,8 +80,8 @@ public class Trie {
 	}
 
 	/**
-	 *  Returns if there is any word in the trie
-	 *  that starts with the given prefix.
+	 * Returns if there is any word in the trie
+	 * that starts with the given prefix.
 	 * @param prefix
 	 * @return
 	 */
@@ -86,9 +93,9 @@ public class Trie {
 	}
 
 	/**
-	 *  Returns if the word is in the trie.
+	 * Returns if the word is in the trie.
 	 * @param word
-	 * @return
+	 * @return if the word is in the trie
 	 */
 	public boolean search(String word) {
 		Node t = searchNode(word);
@@ -101,7 +108,7 @@ public class Trie {
 	/**
 	 * Return how many words starting with prefix
 	 * @param prefix
-	 * @return
+	 * @return how many words starting with prefix
 	 */
 	public int countWordStartsWith(String prefix) {
 
@@ -144,7 +151,7 @@ public class Trie {
 		node.setVisited(true);
 		for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
 			if (entry.getValue().isVisited() == false) {
-				System.out.print("("+entry.getValue().getC() + ":" +entry.getValue().getCount() +")\t->\t");
+				System.out.print("("+entry.getValue().getC() + ":" +entry.getValue().getCount() +")->");
 				if (entry.getValue().isLeaf()) {
 					System.out.println("*");
 				}
@@ -179,19 +186,19 @@ public class Trie {
 		}
 	}
 
-	public int getWords() {
-		return words;
+	public int getNumberOfWords() {
+		return numOfwords;
 	}
 
-	public void setWords(int words) {
-		this.words = words;
+	private void setNumberOfWords(int words) {
+		this.numOfwords = words;
 	}
 
 	public boolean isCaseSensitive() {
 		return caseSensitive;
 	}
 
-	public void setCaseSensitive(boolean caseSensitive) {
+	private void setCaseSensitive(boolean caseSensitive) {
 		this.caseSensitive = caseSensitive;
 	}
 
