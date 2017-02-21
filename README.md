@@ -2,9 +2,9 @@
 * Author: Umberto Griffo
 * Twitter: @UmbertoGriffo
 
-**Trie**[1] is an efficient information retrieval data structure that we can use to search a word in **O(M)** time, where **M** is maximum string length. However the penalty is on trie storage requirements.
+**Trie**[1] is an ordered tree data structure that uses strings as keys. It's an efficient information retrieval data structure that we can use to search a word in **O(M)** time, where **M** is maximum string length. However the penalty is on trie storage requirements.
 
-**Trie** is an ordered tree data structure that uses strings as keys. The following picture shows a trie with the keys "Joe", "John", "Johnny", "Jane", and "jack"
+The following picture shows a trie with the keys "Joe", "John", "Johnny", "Jane", and "jack"
 <p align="center">
   <img src="https://github.com/umbertogriffo/Trie/blob/master/Trie.jpg"/>
 </p>
@@ -17,7 +17,7 @@ The application must perform two types of operations:
 - add name, where *name* is a string denoting a contact name. This must store *name* as a new contact in the application.
 - count words starts with a partial name to search the application for.
 
-Example of use:
+Example of usage:
 ``` java
 public class Contact {
 	public static void main(String[] args) {
