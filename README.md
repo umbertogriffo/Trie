@@ -22,17 +22,19 @@ Example of use:
 public class Contact {
 	public static void main(String[] args) {
 		
-	    // This is a case sensitive trie
+		// This is a case sensitive trie
 	    Trie trie = new Trie(true);
 	    
-		trie.add("umberto");
-		trie.add("roberto");
-		trie.add("Massimiliano");
-		trie.add("maurizio");
+		trie.add("Joe");
+		trie.add("John");
+		trie.add("Johnny");
+		trie.add("Jane");
+		trie.add("jack");
 		
 		trie.show();
 		
-		System.out.println("Number Of Words Starts with 'ma': "+trie.countWordStartsWith("ma"));
+		System.out.println("Number Of Words Starts with 'ma': "+trie.countWordStartsWith("Jo"));
+		System.out.println("Number Of Words Starts with 'ma': "+trie.countWordStartsWith("ja"));
 		
 		System.out.println("Number Of Words: "+trie.getNumberOfWords());
 		
