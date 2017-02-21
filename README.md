@@ -27,17 +27,22 @@ public class Contact {
 	    
 		trie.add("Joe");
 		trie.add("John");
-		trie.add("Johnny");
+		trie.add("Johny");
+		trie.add("Johnny");		
 		trie.add("Jane");
 		trie.add("jack");
 		
-		trie.show();
-		
-		System.out.println("Number Of Words Starts with 'ma': "+trie.countWordStartsWith("Jo"));
-		System.out.println("Number Of Words Starts with 'ma': "+trie.countWordStartsWith("ja"));
-		
 		System.out.println("Number Of Words: "+trie.getNumberOfWords());
 		
+		trie.show();
+		
+		System.out.println("Number Of Words Starts with 'Jo': "+trie.countWordStartsWith("Jo"));
+		System.out.println("Number Of Words Starts with 'ja': "+trie.countWordStartsWith("ja"));
+		
+		List<String> words = trie.getWordStartsWith("Jo");
+		for(String word:words){
+			System.out.println(word);
+		}	
 	}
 }
 ``` 
