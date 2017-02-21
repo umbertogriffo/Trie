@@ -15,56 +15,27 @@ For example we can make our own Contacts application[2].
 The application must perform two types of operations:
 
 - add name, where *name* is a string denoting a contact name. This must store *name* as a new contact in the application.
-- find partial, where *partial* is a string denoting a partial name to search the application for. It must count the number of contacts starting with *partial* and print the count on a new line.
+- count words starts with a partial name to search the application for.
 
-Given a file containing *n* sequential *add* and *find* operations, perform each operation in order:
-
-``` 
-9
-add umberto
-add roberto
-add emanuele
-add tushare
-add flavio
-add massimiliano
-add maurizio
-find ma
-find tup
-```
-
-For each find partial operation, print the number of contact names starting with *partial* on a new line:
-``` 
-2
-0
-```
-
-Example of Main Java Class:
+Example of use:
 ``` java
-public class App {
+public class Contact {
 	public static void main(String[] args) {
 		
-		File fileName = new File("Input/testCase4");
-
-		Trie trie = new Trie();
-
-		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-			br.readLine();
-			for (String line; (line = br.readLine()) != null;) {
-				System.out.println(line);
-				String[] in = line.split(" ");
-				String op = in[0];
-				String contact = in[1];
-
-				if (op.equals("add")) {
-					trie.insert(contact);
-				} else if (op.equals("find")) {
-					System.out.println(trie.countWordStartsWith(contact));
-				}
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	    // This is a case sensitive trie
+	    Trie trie = new Trie(true);
+	    
+		trie.add("umberto");
+		trie.add("roberto");
+		trie.add("Massimiliano");
+		trie.add("maurizio");
+		
+		trie.show();
+		
+		System.out.println("Number Of Words Starts with 'ma': "+trie.countWordStartsWith("ma"));
+		
+		System.out.println("Number Of Words: "+trie.getNumberOfWords());
+		
 	}
 }
 ``` 
