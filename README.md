@@ -4,7 +4,7 @@
 
 **Trie**[1] is an efficient information retrieval data structure that we can use to search a word in **O(M)** time, where **M** is maximum string length. However the penalty is on trie storage requirements.
 
-The following picture shows a trie with the keys "Joe", "John", "Johnny", "Jane", and "jack"
+**Trie** is an ordered tree data structure that uses strings as keys. The following picture shows a trie with the keys "Joe", "John", "Johnny", "Jane", and "jack"
 <p align="center">
   <img src="https://github.com/umbertogriffo/Trie/blob/master/Trie.jpg"/>
 </p>
