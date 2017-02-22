@@ -1,6 +1,6 @@
 package Algo.demo;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import Algo.tries.Trie;
 
@@ -24,9 +24,10 @@ public class Contact {
 		System.out.println("Number Of Words Starts with 'Jo': "+trie.countWordStartsWith("Jo"));
 		System.out.println("Number Of Words Starts with 'ja': "+trie.countWordStartsWith("ja"));
 		
-		List<String> words = trie.getWordStartsWith("Jo");
-		for(String word:words){
-			System.out.println(word);
-		}	
+		Stream<String> words = trie.getWordStartsWith("Jo");
+		words.forEach(System.out::println);
+		Stream<String> words2 = trie.getWordStartsWith("a");
+		words2.forEach(System.out::println);
+
 	}
 }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.stream.Stream;
 
 import Algo.tries.Trie;
 
@@ -27,10 +28,11 @@ public class App {
 					trie.add(contact);
 				} else if (op.equals("find")) {
 					trie.countWordStartsWith(contact);
+					Stream<String> words = trie.getWordStartsWith(contact);
+					words.count();
 					//System.out.println("Number Of Words Starts with 'ma': "+trie.countWordStartsWith(contact));
 				}
 			}
-
 			//trie.show();
 			System.out.println("Number Of Words: "+trie.getNumberOfWords());
 			long stopTime = System.currentTimeMillis();

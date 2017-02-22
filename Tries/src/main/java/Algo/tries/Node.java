@@ -16,6 +16,7 @@ public class Node{
 
     public Node() {
         setCount(0);
+        setVisited(false);
     }
 
     public Node(char c){

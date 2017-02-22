@@ -1,9 +1,8 @@
 package Algo.tries;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.stream.Stream;
 
 /**
  * Trie(https://en.wikipedia.org/wiki/Trie) is an efficient information
@@ -213,19 +212,17 @@ public class Trie {
 	 * Return words starting with prefix
 	 * 
 	 * @param prefix
-	 * @return a list containing words starting with prefix
+	 * @return a Stream containing words starting with prefix
 	 */
-	public List<String> getWordStartsWith(String prefix) {
+	public Stream<String> getWordStartsWith(String prefix) {
 		
-		List<String> words = new LinkedList<String>();
-
 		if (!startsWith(prefix)) {
-			return null;
+			return Stream.empty();
 		}
 		
-		List<Node> leafNodes = getLeafNodes(searchNode(prefix));
+		Stream<Node> leafNodes = getLeafNodes(searchNode(prefix));
 		
-		for (Node node : leafNodes) {
+		return leafNodes.map(node -> {
 			Node currentParent = node.getParent();
 			StringBuilder wordBuilder = new StringBuilder();			
 			while (currentParent != null) {
@@ -234,10 +231,9 @@ public class Trie {
 				}				
 				currentParent = currentParent.getParent();
 			}
-			words.add(wordBuilder.reverse().append(node.getC()).toString());
-		}
+			return wordBuilder.reverse().append(node.getC()).toString();
+		}); 
 
-		return words;
 	}
 
 	/**
@@ -247,10 +243,10 @@ public class Trie {
 	 * @param node
 	 * @return List containing the Leaf Nodes
 	 */
-	public List<Node> getLeafNodes(Node node) {
-		List<Node> leafNodes = new LinkedList<Node>();
+	public Stream<Node> getLeafNodes(Node node) {
+		//List<Node> leafNodes = new LinkedList<Node>();
 		node.setVisited(true);
-		for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
+		/*for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
 			if (entry.getValue().isVisited() == false) {
 //				System.out.print("(" + entry.getValue().getC() + ":" + entry.getValue().getCount() + ":"
 //						+ entry.getValue().getParent().getC() + ")->");
@@ -258,10 +254,20 @@ public class Trie {
 					leafNodes.add(entry.getValue());
 					//System.out.println("*");
 				}
-				leafNodes.addAll(getLeafNodes(entry.getValue()));
+				leafNodes.addAll(getLeafNodes(entry.getValue()).collect(Collectors.toList()));
 			}
-		}
-		return leafNodes;
+		}*/
+		return node.children.entrySet().stream().filter(entry->!entry.getValue().isVisited())
+		.flatMap(entry->{
+			Stream<Node> leafNodeStr = getLeafNodes(entry.getValue());
+			if (entry.getValue().isLeaf()) {
+				return Stream.concat(Stream.of(entry.getValue()), leafNodeStr);
+			}
+			else{
+				return leafNodeStr;
+			}
+		});
+		//return leafNodes.stream();
 	}
 
 	public int getNumberOfWords() {
