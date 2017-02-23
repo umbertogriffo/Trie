@@ -1,4 +1,4 @@
-## A Trie implementation in Java
+## A Trie implementation in Java 8
 * Author: Umberto Griffo
 * Twitter: @UmbertoGriffo
 
