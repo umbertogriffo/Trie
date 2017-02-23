@@ -9,6 +9,7 @@ The following picture shows a trie with the keys "Joe", "John", "Johnny", "Johnn
   <img src="https://github.com/umbertogriffo/Trie/blob/master/Trie_example.png" height="330" width="330" />
 </p>
 
+## Use Case
 A common application of a **trie** is storing a **predictive text** or **autocomplete dictionary**, such as found on a mobile telephone. Such applications take advantage of a trie's ability to quickly search for, insert, and delete entries.
 
 For example we can make our own Contacts application[2]. 
@@ -48,6 +49,6 @@ public class Contact {
 }
 ``` 
 
-###References
+##References
 - [1] https://en.wikipedia.org/wiki/Trie
 - [2] https://www.hackerrank.com/challenges/contacts
