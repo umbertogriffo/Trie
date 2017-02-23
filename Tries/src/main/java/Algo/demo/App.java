@@ -29,7 +29,7 @@ public class App {
 				} else if (op.equals("find")) {
 					trie.countWordStartsWith(contact);
 					Stream<String> words = trie.getWordStartsWith(contact);
-					words.count();
+					words.findFirst();
 					//System.out.println("Number Of Words Starts with 'ma': "+trie.countWordStartsWith(contact));
 				}
 			}

@@ -15,14 +15,14 @@ public class Contact {
 		trie.add("Johny");
 		trie.add("Johnny");		
 		trie.add("Jane");
-		trie.add("jack");
+		trie.add("Jack");
 		
 		System.out.println("Number Of Words: "+trie.getNumberOfWords());
 		
 		trie.show();
 		
-		System.out.println("Number Of Words Starts with 'Jo': "+trie.countWordStartsWith("Jo"));
-		System.out.println("Number Of Words Starts with 'ja': "+trie.countWordStartsWith("ja"));
+		System.out.println("Number Of Words Starts with 'Jo': "+trie.countWordStartsWith("John"));
+		System.out.println("Number Of Words Starts with 'Ja': "+trie.countWordStartsWith("Ja"));
 		
 		Stream<String> words = trie.getWordStartsWith("Jo");
 		words.forEach(System.out::println);

@@ -14,17 +14,17 @@ import java.util.stream.Stream;
  *
  */
 public class Trie {
-
+	// Trie accepts only letters
 	private final String REGEX_ONLY_LETTERS = "[^a-zA-Z]+";
-
+	// Dummy node
 	private Node root;
-	// current number of unique words in trie
+	// Current number of unique words in trie
 	private int numOfwords;
-	// if this is a case sensitive trie
+	// If this is a case sensitive trie
 	private boolean caseSensitive;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @param caseSensitive
 	 *            set if this is a case sensitive trie
@@ -76,7 +76,7 @@ public class Trie {
 	 * Search a word in the trie.
 	 * 
 	 * @param word
-	 * @return
+	 * @return the last word's node
 	 */
 	public Node searchNode(String word) {
 		word = this.caseSensitive ? word : word.toLowerCase();
@@ -99,7 +99,7 @@ public class Trie {
 	 * prefix.
 	 * 
 	 * @param prefix
-	 * @return
+	 * @return true|false
 	 */
 	public boolean startsWith(String prefix) {
 		if (searchNode(prefix) == null)
@@ -112,7 +112,7 @@ public class Trie {
 	 * Returns if the word is in the trie.
 	 * 
 	 * @param word
-	 * @return if the word is in the trie
+	 * @return true|false
 	 */
 	public boolean search(String word) {
 		Node t = searchNode(word);
@@ -123,7 +123,7 @@ public class Trie {
 	}
 
 	/**
-	 * Return how many words starting with prefix
+	 * Return how many words starting with prefix.
 	 * 
 	 * @param prefix
 	 * @return how many words starting with prefix
@@ -139,7 +139,7 @@ public class Trie {
 	}
 
 	/**
-	 * Set to unvisited all the Tries's node
+	 * Set to unvisited all the Tries's node.
 	 * 
 	 * @param node
 	 */
@@ -151,7 +151,7 @@ public class Trie {
 	}
 
 	/**
-	 * Show The Trie
+	 * Show The Trie.
 	 */
 	public void show() {
 
@@ -163,7 +163,7 @@ public class Trie {
 	}
 
 	/**
-	 * Recursive Depth-first search (DFS)
+	 * Recursive Depth-first search (DFS).
 	 * 
 	 * @param node
 	 */
@@ -182,7 +182,7 @@ public class Trie {
 	}
 
 	/**
-	 * Iterative Depth-first search (DFS) using stack
+	 * Iterative Depth-first search (DFS) using stack.
 	 * 
 	 * @param node
 	 * @return
@@ -209,7 +209,7 @@ public class Trie {
 	}
 
 	/**
-	 * Return words starting with prefix
+	 * Return words starting with prefix.
 	 * 
 	 * @param prefix
 	 * @return a Stream containing words starting with prefix
@@ -238,10 +238,10 @@ public class Trie {
 
 	/**
 	 * Return a List containing the Leaf Nodes starting from a node using
-	 * Recursive Depth-first search (DFS)
+	 * Recursive Depth-first search (DFS).
 	 * 
 	 * @param node
-	 * @return List containing the Leaf Nodes
+	 * @return a Stream containing the Leaf Nodes
 	 */
 	public Stream<Node> getLeafNodes(Node node) {
 		//List<Node> leafNodes = new LinkedList<Node>();
