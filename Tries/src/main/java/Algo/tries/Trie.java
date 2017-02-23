@@ -244,9 +244,11 @@ public class Trie {
 	 * @return a Stream containing the Leaf Nodes
 	 */
 	public Stream<Node> getLeafNodes(Node node) {
-		//List<Node> leafNodes = new LinkedList<Node>();
 		node.setVisited(true);
-		/*for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
+		/*Java 7
+		List<Node> leafNodes = new LinkedList<Node>();
+		
+		for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
 			if (entry.getValue().isVisited() == false) {
 //				System.out.print("(" + entry.getValue().getC() + ":" + entry.getValue().getCount() + ":"
 //						+ entry.getValue().getParent().getC() + ")->");
@@ -256,7 +258,9 @@ public class Trie {
 				}
 				leafNodes.addAll(getLeafNodes(entry.getValue()).collect(Collectors.toList()));
 			}
-		}*/
+		}
+		return leafNodes.stream();
+		*/
 		return node.children.entrySet().stream().filter(entry->!entry.getValue().isVisited())
 		.flatMap(entry->{
 			Stream<Node> leafNodeStr = getLeafNodes(entry.getValue());
@@ -267,7 +271,7 @@ public class Trie {
 				return leafNodeStr;
 			}
 		});
-		//return leafNodes.stream();
+		
 	}
 
 	public int getNumberOfWords() {
