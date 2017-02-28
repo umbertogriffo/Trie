@@ -1,5 +1,7 @@
 package Algo.tries;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Stream;
@@ -145,8 +147,10 @@ public class Trie {
 	 */
 	public void initFalse(Node node) {
 		node.setVisited(false);
-		for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
-			initFalse(entry.getValue());
+		if (node.children != null) {
+			for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
+				initFalse(entry.getValue());
+			}
 		}
 	}
 
@@ -215,24 +219,24 @@ public class Trie {
 	 * @return a Stream containing words starting with prefix
 	 */
 	public Stream<String> getWordStartsWith(String prefix) {
-		
+
 		if (!startsWith(prefix)) {
 			return Stream.empty();
 		}
-		
+
 		Stream<Node> leafNodes = getLeafNodes(searchNode(prefix));
-		
+
 		return leafNodes.map(node -> {
 			Node currentParent = node.getParent();
-			StringBuilder wordBuilder = new StringBuilder();			
+			StringBuilder wordBuilder = new StringBuilder();
 			while (currentParent != null) {
-				if(currentParent.getParent()!=null){
+				if (currentParent.getParent() != null) {
 					wordBuilder.append(currentParent.getC());
-				}				
+				}
 				currentParent = currentParent.getParent();
 			}
 			return wordBuilder.reverse().append(node.getC()).toString();
-		}); 
+		});
 
 	}
 
@@ -245,9 +249,71 @@ public class Trie {
 	 */
 	public Stream<Node> getLeafNodes(Node node) {
 		node.setVisited(true);
-		/*Java 7
-		List<Node> leafNodes = new LinkedList<Node>();
+		/*
+		 * Java 7 List<Node> leafNodes = new LinkedList<Node>();
+		 * 
+		 * for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
+		 * if (entry.getValue().isVisited() == false) { // System.out.print("("
+		 * + entry.getValue().getC() + ":" + entry.getValue().getCount() + ":"
+		 * // + entry.getValue().getParent().getC() + ")->"); if
+		 * (entry.getValue().isLeaf()) { leafNodes.add(entry.getValue());
+		 * //System.out.println("*"); }
+		 * leafNodes.addAll(getLeafNodes(entry.getValue()).collect(Collectors.
+		 * toList())); } } return leafNodes.stream();
+		 */
+		return node.children.entrySet().stream().filter(entry -> !entry.getValue().isVisited()).flatMap(entry -> {
+			Stream<Node> leafNodeStr = getLeafNodes(entry.getValue());
+			if (entry.getValue().isLeaf()) {
+				return Stream.concat(Stream.of(entry.getValue()), leafNodeStr);
+			} else {
+				return leafNodeStr;
+			}
+		});
+
+	}
+	
+	/**
+	 * Return words starting with prefix
+	 * 
+	 * @param prefix
+	 * @return a list containing words starting with prefix
+	 */
+	
+	public List<String> getWordStartsWithJava7(String prefix) {
 		
+		List<String> words = new LinkedList<String>();
+
+		if (!startsWith(prefix)) {
+			return null;
+		}
+		
+		List<Node> leafNodes = getLeafNodesJava7(searchNode(prefix));
+		
+		for (Node node : leafNodes) {
+			Node currentParent = node.getParent();
+			StringBuilder wordBuilder = new StringBuilder();			
+			while (currentParent != null) {
+				if(currentParent.getParent()!=null){
+					wordBuilder.append(currentParent.getC());
+				}				
+				currentParent = currentParent.getParent();
+			}
+			words.add(wordBuilder.reverse().append(node.getC()).toString());
+		}
+
+		return words;
+	}
+	
+	/**
+	 * Return a List containing the Leaf Nodes starting from a node using
+	 * Recursive Depth-first search (DFS)
+	 * 
+	 * @param node
+	 * @return List containing the Leaf Nodes
+	 */
+	public List<Node> getLeafNodesJava7(Node node) {
+		List<Node> leafNodes = new LinkedList<Node>();
+		node.setVisited(true);
 		for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
 			if (entry.getValue().isVisited() == false) {
 //				System.out.print("(" + entry.getValue().getC() + ":" + entry.getValue().getCount() + ":"
@@ -256,22 +322,10 @@ public class Trie {
 					leafNodes.add(entry.getValue());
 					//System.out.println("*");
 				}
-				leafNodes.addAll(getLeafNodes(entry.getValue()).collect(Collectors.toList()));
+				leafNodes.addAll(getLeafNodesJava7(entry.getValue()));
 			}
 		}
-		return leafNodes.stream();
-		*/
-		return node.children.entrySet().stream().filter(entry->!entry.getValue().isVisited())
-		.flatMap(entry->{
-			Stream<Node> leafNodeStr = getLeafNodes(entry.getValue());
-			if (entry.getValue().isLeaf()) {
-				return Stream.concat(Stream.of(entry.getValue()), leafNodeStr);
-			}
-			else{
-				return leafNodeStr;
-			}
-		});
-		
+		return leafNodes;
 	}
 
 	public int getNumberOfWords() {
