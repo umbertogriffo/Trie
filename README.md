@@ -42,8 +42,6 @@ public class Contact {
 		
 		Stream<String> words = trie.getWordStartsWith("Jo");
 		words.forEach(System.out::println);
-		Stream<String> words2 = trie.getWordStartsWith("a");
-		words2.forEach(System.out::println);
 
 	}
 }
