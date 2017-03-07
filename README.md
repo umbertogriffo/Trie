@@ -32,17 +32,17 @@ public class Contact {
 		trie.add("Johnny");		
 		trie.add("Jane");
 		trie.add("jack");
-		
-		System.out.println("Number Of Words: "+trie.getNumberOfWords());
-		
+		System.out.println("Number Of Words: " + trie.getNumberOfWords());
+
 		trie.show();
-		
-		System.out.println("Number Of Words Starts with 'Jo': "+trie.countWordStartsWith("Jo"));
-		System.out.println("Number Of Words Starts with 'ja': "+trie.countWordStartsWith("ja"));
-		
+
+		trie.remove("Johnny");
+
+		System.out.println("Number Of Words Starts with 'John': " + trie.countWordStartsWith("John"));
+		System.out.println("Number Of Words Starts with 'Ja': " + trie.countWordStartsWith("Ja"));
+
 		Stream<String> words = trie.getWordStartsWith("Jo");
 		words.forEach(System.out::println);
-
 	}
 }
 ``` 
