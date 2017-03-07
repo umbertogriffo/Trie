@@ -49,6 +49,57 @@ public class AppTest extends TestCase {
 		assertTrue(trie.countWordStartsWith("ssssss") == 0);
 	}
 
+	public void testRemove1() {
+		Trie trie = new Trie(false);
+		trie.add("s");
+		trie.add("ss");
+		trie.add("sss");
+		trie.add("ssss");
+		trie.add("sssss");
+		trie.remove("s");
+		assertTrue(trie.countWordStartsWith("s") == 4);
+		trie.remove("sss");
+		assertTrue(trie.countWordStartsWith("sss") == 2);
+		trie.remove("ssss");
+		assertTrue(trie.countWordStartsWith("sssss") == 1);
+		trie.remove("ss");
+		assertTrue(trie.countWordStartsWith("ss") == 1);
+		trie.remove("sssss");
+		assertTrue(trie.countWordStartsWith("sssss") == 0);
+		assertTrue(trie.getNumberOfWords() == 0);
+	}
+
+	public void testRemove2() {
+		Trie trie = new Trie(true);
+		trie.add("Joe");
+		trie.add("John");
+		trie.add("Johny");
+		trie.add("Johnny");
+		trie.add("Jane");
+		trie.add("Jack");
+
+		trie.remove("Johnny");
+		assertTrue(trie.countWordStartsWith("John") == 2);
+		assertTrue(trie.countWordStartsWith("Ja") == 2);
+		trie.remove("Jack");
+		assertTrue(trie.countWordStartsWith("John") == 2);
+		assertTrue(trie.countWordStartsWith("Ja") == 1);
+		trie.remove("Joe");
+		assertTrue(trie.countWordStartsWith("John") == 2);
+		assertTrue(trie.countWordStartsWith("Ja") == 1);
+		trie.remove("John");
+		assertTrue(trie.countWordStartsWith("John") == 1);
+		assertTrue(trie.countWordStartsWith("Ja") == 1);
+		trie.remove("Jane");
+		assertTrue(trie.countWordStartsWith("John") == 1);
+		assertTrue(trie.countWordStartsWith("Ja") == 0);
+		trie.remove("Johny");
+		assertTrue(trie.countWordStartsWith("John") == 0);
+		assertTrue(trie.countWordStartsWith("Ja") == 0);
+
+		assertTrue(trie.getNumberOfWords() == 0);
+	}
+
 	public void testCaseSensitive() {
 		Trie trie = new Trie(true);
 		trie.add("umberto");
