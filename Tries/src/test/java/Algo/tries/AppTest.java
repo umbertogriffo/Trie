@@ -48,7 +48,7 @@ public class AppTest extends TestCase {
 		assertTrue(trie.countWordStartsWith("sssss") == 1);
 		assertTrue(trie.countWordStartsWith("ssssss") == 0);
 	}
-
+	
 	public void testRemove1() {
 		Trie trie = new Trie(false);
 		trie.add("s");
@@ -99,7 +99,15 @@ public class AppTest extends TestCase {
 
 		assertTrue(trie.getNumberOfWords() == 0);
 	}
-
+	
+	public void testRemove3() {
+		Trie trie = new Trie(false);
+		trie.add("s");
+		trie.remove("s");
+		assertTrue(trie.countWordStartsWith("s") == 0);
+		assertTrue(trie.getNumberOfWords() == 0);
+	}
+	
 	public void testCaseSensitive() {
 		Trie trie = new Trie(true);
 		trie.add("umberto");

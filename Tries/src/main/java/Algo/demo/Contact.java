@@ -7,7 +7,7 @@ import Algo.tries.Trie;
 public class Contact {
 	public static void main(String[] args) {
 
-		// This is Sa case sensitive trie
+		// This is a case sensitive trie
 		Trie trie = new Trie(true);
 
 		trie.add("Joe");
