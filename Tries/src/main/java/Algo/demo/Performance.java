@@ -43,7 +43,7 @@ public class Performance {
 			System.out.println("Elapsed Time in hours: " + ((elapsedTime / (1000 * 60 * 60)) % 24));
 
 			/**
-			 * countWordStartsWith
+			 * Count Words Starts With
 			 */
 			// Calculate Elapsed / Execute Time
 			long startTimeGetCountWordStartsWith = System.currentTimeMillis();			
@@ -58,7 +58,7 @@ public class Performance {
 			System.out.println("Elapsed Time in hours: " + ((elapsedTimeGetCountWordStartsWith / (1000 * 60 * 60)) % 24));
 
 			/**
-			 * GetWordStartsWith
+			 * Get Words Starts With
 			 */
 			// Calculate Elapsed / Execute Time
 			long startTimeGetWordStartsWith = System.currentTimeMillis();
@@ -73,7 +73,7 @@ public class Performance {
 			
 
 			/**
-			 * GetWordStartsWithJava7
+			 * Get Words Starts With (Java7)
 			 */
 			// Calculate Elapsed / Execute Time
 			long startTimeGetWordStartsWithJava7 = System.currentTimeMillis();
@@ -86,6 +86,21 @@ public class Performance {
 			System.out.println("Elapsed Time in minutes: " + ((elapsedTimeGetWordStartsWithJava7 / (1000 * 60)) % 60));
 			System.out.println("Elapsed Time in hours: " + ((elapsedTimeGetWordStartsWithJava7 / (1000 * 60 * 60)) % 24));
 
+			/**
+			 * Remove
+			 */
+			// Calculate Elapsed / Execute Time
+			long startTimeRemove = System.currentTimeMillis();
+			trie.remove("yxxacpbdttrtxevzgjfg");			
+			System.out.println("Number Of Words: "+trie.getNumberOfWords());
+			long stopTimeRemove = System.currentTimeMillis();
+			long elapsedTimeRemove = stopTimeRemove - startTimeRemove;
+			System.out.println("Elapsed / Execute Time");
+			System.out.println("Elapsed Time in milliseconds: " + elapsedTimeRemove);
+			System.out.println("Elapsed Time in seconds: " + (elapsedTimeRemove / 1000) % 60);
+			System.out.println("Elapsed Time in minutes: " + ((elapsedTimeRemove / (1000 * 60)) % 60));
+			System.out.println("Elapsed Time in hours: " + ((elapsedTimeRemove / (1000 * 60 * 60)) % 24));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
