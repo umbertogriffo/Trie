@@ -13,7 +13,7 @@ The following picture shows a trie with the keys "Joe", "John", "Johnny", "Johnn
 
 ## Use Case
 
-### Dictionary Suggestions OR Autocomplete dictionary
+### Dictionary Suggestions OR Autocomplete dictionary [1-3]
 
 Retrieving data stored in Trie data structure is very fast, so it is most suited for application where retrieval are more frequently performed like Phone directory where contact searching operation is used frequently.
 
@@ -26,7 +26,7 @@ If we search for word "tiny", then it auto suggest words starting with same char
 
 We can perform four types of operations:
 
-- add name, where *name* is a string denoting a contact name. This must store *name* as a new contact in the application.
+- add a word.
 - count words starts with a partial name to search the application for.
 - get words starts with a partial name to search the application for.
 - show the Trie
