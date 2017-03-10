@@ -35,29 +35,40 @@ We can perform the follows operations:
 - show the Trie
 
 ``` java
-public class Contact {
+public class Demo {
 	public static void main(String[] args) {
-		
+
 		// This is a case sensitive trie
-	       Trie trie = new Trie(true);
-	    
+		Trie trie = new Trie(true);
+
+		// Add words.
 		trie.add("Joe");
 		trie.add("John");
 		trie.add("Johny");
-		trie.add("Johnny");		
+		trie.add("Johnny");
 		trie.add("Jane");
-		trie.add("jack");
+		trie.add("Jack");
+		
 		System.out.println("Number Of Words: " + trie.getNumberOfWords());
 
 		trie.show();
-
+		
+		// Return true if the word is in the trie.
+		System.out.println(trie.search("Jane"));
+		// Return true if there is any word in the trie that starts with the given prefix.
+		System.out.println(trie.startsWith("Ja"));
+		// Remove a word
 		trie.remove("Johnny");
 
+		// Count words starts with a partial name to search the application for
 		System.out.println("Number Of Words Starts with 'John': " + trie.countWordStartsWith("John"));
 		System.out.println("Number Of Words Starts with 'Ja': " + trie.countWordStartsWith("Ja"));
-
+		// Get words starts with a partial name to search the application for
 		Stream<String> words = trie.getWordStartsWith("Jo");
 		words.forEach(System.out::println);
+
+		trie.show();
+
 	}
 }
 ``` 
