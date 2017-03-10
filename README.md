@@ -24,9 +24,12 @@ If we search for word "tiny", then it auto suggest words starting with same char
 
 ## Example of usage
 
-We can perform four types of operations:
+We can perform the flollows operations:
 
 - add a word.
+- remove a word.
+- return true if there is any word in the trie that starts with the given prefix.
+- return true if the word is in the trie.
 - count words starts with a partial name to search the application for.
 - get words starts with a partial name to search the application for.
 - show the Trie
