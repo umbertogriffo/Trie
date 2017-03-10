@@ -24,7 +24,7 @@ If we search for word "tiny", then it auto suggest words starting with same char
 
 ## Example of usage
 
-We can perform the flollows operations:
+We can perform the follows operations:
 
 - add a word.
 - remove a word.
@@ -39,7 +39,7 @@ public class Contact {
 	public static void main(String[] args) {
 		
 		// This is a case sensitive trie
-	        Trie trie = new Trie(true);
+	       Trie trie = new Trie(true);
 	    
 		trie.add("Joe");
 		trie.add("John");
