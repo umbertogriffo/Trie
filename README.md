@@ -66,9 +66,6 @@ public class Demo {
 		// Get words starts with a partial name to search the application for
 		Stream<String> words = trie.getWordStartsWith("Jo");
 		words.forEach(System.out::println);
-
-		trie.show();
-
 	}
 }
 ``` 
