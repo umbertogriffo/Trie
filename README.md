@@ -77,7 +77,7 @@ public class Demo {
 
 where **k** is maximum string length
 
-##References
+## References
 - [1] https://en.wikipedia.org/wiki/Trie
 - [2] https://www.hackerrank.com/challenges/contacts
 - [3] https://www.quora.com/What-is-a-trie-What-is-its-importance-and-how-it-is-implemented
