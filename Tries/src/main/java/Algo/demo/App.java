@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import Algo.tries.Trie;
 
@@ -14,7 +15,7 @@ public class App {
 		// Calculate Elapsed / Execute Time
 		long startTime = System.currentTimeMillis();
 		// this is a case sensitive trie
-		Trie trie = new Trie(true);
+		Trie trie = new Trie(true, StandardCharsets.UTF_8);
 
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			br.readLine();

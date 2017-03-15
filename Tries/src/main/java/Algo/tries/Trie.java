@@ -1,5 +1,6 @@
 package Algo.tries;
 
+import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,26 +17,32 @@ import java.util.stream.Stream;
  *
  */
 public class Trie {
+	
 	// Trie accepts only letters
-	private final String REGEX_ONLY_LETTERS = "[^a-zA-Z]+";
+	// private final String REGEX_ONLY_LETTERS = "[^a-zA-Z]+";
 	// Dummy node
 	private Node root;
 	// Current number of unique words in trie
 	private int numOfwords;
 	// If this is a case sensitive trie
 	private boolean caseSensitive;
+	// https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html
+	// https://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html
+	private Charset charset;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param caseSensitive
 	 *            set if this is a case sensitive trie
+	 * @param Charset
 	 */
-	public Trie(boolean caseSensitive) {
+	public Trie(boolean caseSensitive, Charset charset) {
 		root = new Node();
 		root.setRoot(true);
 		setNumberOfWords(0);
 		setCaseSensitive(caseSensitive);
+		setCharset(charset);
 	}
 
 	/**
@@ -44,8 +51,12 @@ public class Trie {
 	 * @param word
 	 */
 	public void add(String word) {
-		word = word.trim().replaceAll(REGEX_ONLY_LETTERS, "");
-		word = this.caseSensitive ? word : word.toLowerCase();
+		// word = word.trim().replaceAll(REGEX_ONLY_LETTERS, "");
+		
+		// Encode String
+		word = encodeWord(word);
+		// Case sensitive
+		word = caseSensitive(word);
 		Map<Character, Node> children = root.children;
 
 		Node currentParent;
@@ -83,7 +94,11 @@ public class Trie {
 	 * @return
 	 */
 	public boolean remove(String word) {
-
+		// Encode String
+		word = encodeWord(word);
+		// Case sensitive
+		word = caseSensitive(word);
+		
 		int previousWord = 1;
 
 		if (!startsWith(word)) {
@@ -141,7 +156,10 @@ public class Trie {
 	 * @return the last word's node
 	 */
 	public Node searchNode(String word) {
-		word = this.caseSensitive ? word : word.toLowerCase();
+		// Encode String
+		word = encodeWord(word);
+		// Case sensitive
+		word = caseSensitive(word);
 		Map<Character, Node> children = root.children;
 		Node node = null;
 		for (int i = 0; i < word.length(); i++) {
@@ -375,6 +393,25 @@ public class Trie {
 		}
 		return leafNodes;
 	}
+	
+	/**
+	 * Encode String
+	 * @param word
+	 * @return word encoded
+	 */
+	private String encodeWord(String word){
+		byte wordBytes[]= word.getBytes(this.getCharset());
+		return new String(wordBytes, this.getCharset());				 
+	}
+	
+	/**
+	 * 
+	 * @param word
+	 * @return
+	 */
+	private String caseSensitive(String word){
+		return this.caseSensitive ? word : word.toLowerCase();			 
+	}
 
 	public int getNumberOfWords() {
 		return numOfwords;
@@ -390,6 +427,14 @@ public class Trie {
 
 	private void setCaseSensitive(boolean caseSensitive) {
 		this.caseSensitive = caseSensitive;
+	}
+
+	public Charset getCharset() {
+		return charset;
+	}
+
+	public void setCharset(Charset charset) {
+		this.charset = charset;
 	}
 
 }

@@ -1,5 +1,7 @@
 package Algo.tries;
 
+import java.nio.charset.StandardCharsets;
+
 import Algo.tries.Trie;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -27,7 +29,7 @@ public class AppTest extends TestCase {
 	}
 
 	public void testBasic() {
-		Trie trie = new Trie(false);
+		Trie trie = new Trie(false, StandardCharsets.UTF_8);
 		trie.add("hack");
 		trie.add("hackerrank");
 		assertTrue(trie.countWordStartsWith("hac") == 2);
@@ -35,7 +37,7 @@ public class AppTest extends TestCase {
 	}
 
 	public void testDuplicate() {
-		Trie trie = new Trie(false);
+		Trie trie = new Trie(false, StandardCharsets.UTF_8);
 		trie.add("s");
 		trie.add("ss");
 		trie.add("sss");
@@ -48,9 +50,9 @@ public class AppTest extends TestCase {
 		assertTrue(trie.countWordStartsWith("sssss") == 1);
 		assertTrue(trie.countWordStartsWith("ssssss") == 0);
 	}
-	
+
 	public void testRemove1() {
-		Trie trie = new Trie(false);
+		Trie trie = new Trie(false, StandardCharsets.UTF_8);
 		trie.add("s");
 		trie.add("ss");
 		trie.add("sss");
@@ -70,7 +72,7 @@ public class AppTest extends TestCase {
 	}
 
 	public void testRemove2() {
-		Trie trie = new Trie(true);
+		Trie trie = new Trie(true, StandardCharsets.UTF_8);
 		trie.add("Joe");
 		trie.add("John");
 		trie.add("Johny");
@@ -99,17 +101,17 @@ public class AppTest extends TestCase {
 
 		assertTrue(trie.getNumberOfWords() == 0);
 	}
-	
+
 	public void testRemove3() {
-		Trie trie = new Trie(false);
+		Trie trie = new Trie(false, StandardCharsets.UTF_8);
 		trie.add("s");
 		trie.remove("s");
 		assertTrue(trie.countWordStartsWith("s") == 0);
 		assertTrue(trie.getNumberOfWords() == 0);
 	}
-	
+
 	public void testCaseSensitive() {
-		Trie trie = new Trie(true);
+		Trie trie = new Trie(true, StandardCharsets.UTF_8);
 		trie.add("umberto");
 		trie.add("roberto");
 		trie.add("Massimiliano");
