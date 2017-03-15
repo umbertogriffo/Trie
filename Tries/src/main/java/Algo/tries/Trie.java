@@ -397,6 +397,20 @@ public class Trie {
 		return leafNodes;
 	}
 
+	public String similarity (String word,int maxDistance) {
+		Map.Entry<String,Integer> min = null;
+		
+		Map<String, Integer> results = getSimilarityMap(word,maxDistance);
+
+	    for(Map.Entry<String,Integer> el : results.entrySet()){
+	     if(min == null || el.getValue() < min.getValue() ){
+	        min = el;
+	     }
+
+	    }
+	    return min.getKey();
+	}
+	
 	/**
 	 * The search function returns a list of all words that are less than the
 	 * given maximum distance from the target word, using Levenshtein distance
@@ -406,7 +420,7 @@ public class Trie {
 	 * @param word
 	 * @param maxDistance
 	 */
-	public Map<String, Integer> similarity(String word, int maxDistance) {
+	public Map<String, Integer> getSimilarityMap(String word, int maxDistance) {
 
 		Map<String, Integer> results = new HashMap<>();
 		// Encode String

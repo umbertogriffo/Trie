@@ -93,7 +93,7 @@ public class Performance {
 			 */
 			// Calculate Elapsed / Execute Time
 			long startTimeSimilarity = System.currentTimeMillis();
-			for (Map.Entry<String, Integer> entry : trie.similarity("yxxacpbdttrtxevzgjfg", 10).entrySet()) {
+			for (Map.Entry<String, Integer> entry : trie.getSimilarityMap("yxxacpbdttrtxevzgjfg", 10).entrySet()) {
 				System.out.println(entry.getKey() + " - " + entry.getValue());
 			}			
 			long stopTimeSimilarity = System.currentTimeMillis();
