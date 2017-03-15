@@ -22,6 +22,10 @@ Retrieving data stored in Trie data structure is very fast, so it is most suited
 Auto suggestion of words while searching for anything in dictionary is very common.
 If we search for word "tiny", then it auto suggest words starting with same characters like "tine", "tin", "tinny" etc.
 
+### String Similarity [4-5]
+
+Trie can be used to Fast and Easy calculate Levenshtein distance.
+
 ## Example of usage
 
 We can perform the follows operations:
@@ -33,6 +37,7 @@ We can perform the follows operations:
 - count words starts with a partial name to search the application for.
 - get words starts with a partial name to search the application for.
 - show the Trie
+- calculate string similarity
 
 ``` java
 
@@ -70,9 +75,19 @@ public class Demo {
 		// Get words starts with a partial name to search the application for
 		Stream<String> words = trie.getWordStartsWith("Jo");
 		words.forEach(System.out::println);
+		
+		// String Similarity using Levenshtein distance		
+		// Get words that are less than the given maximum distance from the target word
+		for (Map.Entry<String, Integer> entry : trie.getSimilarityMap("Jane", 10).entrySet()) {
+			System.out.println(entry.getKey() + " - " + entry.getValue());
+		}
+		// Get word that is less than the given maximum distance from the target word
+		System.out.println(trie.similarity("Jane", 10));
 	}
 }
 ``` 
+
+
 ## Complexity (Average)
 
 |Access|Search|Insertion|Deletion|
@@ -85,3 +100,5 @@ where **k** is maximum string length
 - [1] https://en.wikipedia.org/wiki/Trie
 - [2] https://www.hackerrank.com/challenges/contacts
 - [3] https://www.quora.com/What-is-a-trie-What-is-its-importance-and-how-it-is-implemented
+- [4] http://stevehanov.ca/blog/index.php?id=114
+- [5] https://en.wikipedia.org/wiki/Levenshtein_distance
