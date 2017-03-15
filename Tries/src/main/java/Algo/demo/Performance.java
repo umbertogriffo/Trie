@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import Algo.tries.Trie;
@@ -86,7 +87,23 @@ public class Performance {
 			System.out.println("Elapsed Time in seconds: " + (elapsedTimeGetWordStartsWithJava7 / 1000) % 60);
 			System.out.println("Elapsed Time in minutes: " + ((elapsedTimeGetWordStartsWithJava7 / (1000 * 60)) % 60));
 			System.out.println("Elapsed Time in hours: " + ((elapsedTimeGetWordStartsWithJava7 / (1000 * 60 * 60)) % 24));
-
+			
+			/**
+			 * Similarity
+			 */
+			// Calculate Elapsed / Execute Time
+			long startTimeSimilarity = System.currentTimeMillis();
+			for (Map.Entry<String, Integer> entry : trie.similarity("yxxacpbdttrtxevzgjfg", 10).entrySet()) {
+				System.out.println(entry.getKey() + " - " + entry.getValue());
+			}			
+			long stopTimeSimilarity = System.currentTimeMillis();
+			long elapsedTimeSimilarity = stopTimeSimilarity - startTimeSimilarity;
+			System.out.println("Elapsed / Execute Time");
+			System.out.println("Elapsed Time in milliseconds: " + elapsedTimeSimilarity);
+			System.out.println("Elapsed Time in seconds: " + (elapsedTimeSimilarity / 1000) % 60);
+			System.out.println("Elapsed Time in minutes: " + ((elapsedTimeSimilarity / (1000 * 60)) % 60));
+			System.out.println("Elapsed Time in hours: " + ((elapsedTimeSimilarity / (1000 * 60 * 60)) % 24));
+			
 			/**
 			 * Remove
 			 */

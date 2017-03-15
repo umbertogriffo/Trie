@@ -1,10 +1,13 @@
 package Algo.tries;
 
 import java.nio.charset.Charset;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.Vector;
 import java.util.stream.Stream;
 
 /**
@@ -17,7 +20,7 @@ import java.util.stream.Stream;
  *
  */
 public class Trie {
-	
+
 	// Trie accepts only letters
 	// private final String REGEX_ONLY_LETTERS = "[^a-zA-Z]+";
 	// Dummy node
@@ -52,7 +55,7 @@ public class Trie {
 	 */
 	public void add(String word) {
 		// word = word.trim().replaceAll(REGEX_ONLY_LETTERS, "");
-		
+
 		// Encode String
 		word = encodeWord(word);
 		// Case sensitive
@@ -98,7 +101,7 @@ public class Trie {
 		word = encodeWord(word);
 		// Case sensitive
 		word = caseSensitive(word);
-		
+
 		int previousWord = 1;
 
 		if (!startsWith(word)) {
@@ -138,14 +141,14 @@ public class Trie {
 			}
 			currentNode = currentParent;
 			currentParent = currentNode.getParent();
-			
-			if(currentParent.isRoot()&&currentNode.getCount()==0){
+
+			if (currentParent.isRoot() && currentNode.getCount() == 0) {
 				root.children.remove(currentNode.getC());
 			}
 		}
-		
-		this.setNumberOfWords(this.getNumberOfWords()-1);
-		
+
+		this.setNumberOfWords(this.getNumberOfWords() - 1);
+
 		return true;
 	}
 
@@ -393,24 +396,125 @@ public class Trie {
 		}
 		return leafNodes;
 	}
-	
+
+	/**
+	 * The search function returns a list of all words that are less than the
+	 * given maximum distance from the target word, using Levenshtein distance
+	 * References: http://stevehanov.ca/blog/index.php?id=114
+	 * https://en.wikipedia.org/wiki/Levenshtein_distance
+	 * 
+	 * @param word
+	 * @param maxDistance
+	 */
+	public Map<String, Integer> similarity(String word, int maxDistance) {
+
+		Map<String, Integer> results = new HashMap<>();
+		// Encode String
+		word = encodeWord(word);
+		// Case sensitive
+		word = caseSensitive(word);
+
+		int size = word.length();
+
+		// build first row
+		Vector<Integer> currentRow = new Vector<Integer>(size + 1);
+
+		for (int i = 0; i <= size; ++i) {
+			currentRow.insertElementAt(i, i);
+		}
+
+		// recursively search each branch of the trie
+		for (Map.Entry<Character, Node> entry : root.children.entrySet()) {
+			results.putAll(LevenshteinDistanceRecursive(entry.getValue(), entry.getValue().getC(), word, currentRow,
+					results, maxDistance));
+		}
+
+		return results;
+
+	}
+
+	/**
+	 * 
+	 * @param node
+	 * @param letter
+	 * @param word
+	 * @param previousRow
+	 * @param results
+	 * @param maxDistance
+	 * @return
+	 */
+	public Map<String, Integer> LevenshteinDistanceRecursive(Node node, char letter, String word,
+			Vector<Integer> previousRow, Map<String, Integer> results, int maxDistance) {
+
+		int columns = previousRow.size();
+		Vector<Integer> currentRow = new Vector<Integer>(previousRow.size());
+		currentRow.add(0, previousRow.get(0) + 1);
+		// Build one row for the letter, with a column for each letter in the
+		// target
+		// word, plus one for the empty string at column 0
+		// Calculate the min cost of insertion, deletion, match or substution
+		int insertCost, deleteCost, replaceCost;
+		for (int i = 1; i < columns; i++) {
+			insertCost = currentRow.get(i - 1) + 1;
+			deleteCost = previousRow.get(i) + 1;
+
+			if (word.charAt(i - 1) != letter) {
+				replaceCost = previousRow.get(i - 1) + 1;
+			} else {
+				replaceCost = previousRow.get(i - 1);
+			}
+
+			currentRow.add(i, Math.min(insertCost, Math.min(deleteCost, replaceCost)));
+
+		}
+		// If the last entry in the row indicates the optimal cost is less than
+		// the maximum distance, and there is a word in this trie node, then add
+		// it.
+		if (currentRow.lastElement() <= maxDistance && node.isLeaf()) {
+			Node currentParent = node.getParent();
+			StringBuilder wordBuilder = new StringBuilder();
+			while (currentParent != null) {
+				if (currentParent.getParent() != null) {
+					wordBuilder.append(currentParent.getC());
+				}
+				currentParent = currentParent.getParent();
+			}
+			results.put(wordBuilder.reverse().append(node.getC()).toString(), currentRow.lastElement());
+		}
+
+		// If any entries in the row are less than the maximum distance, then
+		// recursively search each branch of the trie.
+		Object obj = Collections.min(currentRow);
+		Integer i = new Integer((int) obj);
+		if (i.intValue() <= maxDistance) {
+			for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
+				results.putAll(LevenshteinDistanceRecursive(entry.getValue(), entry.getValue().getC(), word, currentRow,
+						results, maxDistance));
+			}
+		}
+
+		return results;
+
+	}
+
 	/**
 	 * Encode String
+	 * 
 	 * @param word
 	 * @return word encoded
 	 */
-	private String encodeWord(String word){
-		byte wordBytes[]= word.getBytes(this.getCharset());
-		return new String(wordBytes, this.getCharset());				 
+	private String encodeWord(String word) {
+		byte wordBytes[] = word.getBytes(this.getCharset());
+		return new String(wordBytes, this.getCharset());
 	}
-	
+
 	/**
 	 * 
 	 * @param word
 	 * @return
 	 */
-	private String caseSensitive(String word){
-		return this.caseSensitive ? word : word.toLowerCase();			 
+	private String caseSensitive(String word) {
+		return this.caseSensitive ? word : word.toLowerCase();
 	}
 
 	public int getNumberOfWords() {
