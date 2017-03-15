@@ -39,7 +39,7 @@ public class Demo {
 	public static void main(String[] args) {
 
 		// This is a case sensitive trie
-		Trie trie = new Trie(true);
+		Trie trie = new Trie(true, StandardCharsets.UTF_8);
 
 		// Add words.
 		trie.add("Joe");
