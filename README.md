@@ -35,6 +35,10 @@ We can perform the follows operations:
 - show the Trie
 
 ``` java
+
+import java.nio.charset.StandardCharsets;
+import java.util.stream.Stream;
+
 public class Demo {
 	public static void main(String[] args) {
 
