@@ -100,5 +100,5 @@ where **k** is maximum string length
 - [1] https://en.wikipedia.org/wiki/Trie
 - [2] https://www.hackerrank.com/challenges/contacts
 - [3] https://www.quora.com/What-is-a-trie-What-is-its-importance-and-how-it-is-implemented
-- [4] http://stevehanov.ca/blog/index.php?id=114
+- [4] Fast and Easy Levenshtein distance using a Trie http://stevehanov.ca/blog/index.php?id=114
 - [5] https://en.wikipedia.org/wiki/Levenshtein_distance
