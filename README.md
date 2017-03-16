@@ -90,11 +90,11 @@ public class Demo {
 
 ## Complexity (Average)
 
-|Access|Search|Insertion|Deletion|
-|----|----|----|----|
-|O(k)|O(k)|O(k)|O(k)|
+|Access|Search|Insertion|Deletion|String Similarity|
+|----|----|----|----|----|
+|O(k)|O(k)|O(k)|O(k)|O(k*n)|
 
-where **k** is maximum string length
+where **k** is maximum string length and **n** is number of nodes in the trie
 
 ## References
 - [1] Trie https://en.wikipedia.org/wiki/Trie
