@@ -13,18 +13,18 @@ The following picture shows a trie with the keys "Joe", "John", "Johnny", "Johnn
 
 ## Use Case
 
-### Dictionary Suggestions OR Autocomplete dictionary [1-3]
+### Dictionary Suggestions OR Autocomplete dictionary
 
-Retrieving data stored in Trie data structure is very fast, so it is most suited for application where retrieval are more frequently performed like Phone directory where contact searching operation is used frequently.
+Retrieving data stored in Trie data structure is very fast, so it is most suited for application where retrieval are more frequently performed like Phone directory where contact searching operation is used frequently [1-3].
 
-### Searching Contact from Mobile Contact list OR Phone Directory [2-3]
+### Searching Contact from Mobile Contact list OR Phone Directory
 
-Auto suggestion of words while searching for anything in dictionary is very common.
+Auto suggestion of words while searching for anything in dictionary is very common [2-3].
 If we search for word "tiny", then it auto suggest words starting with same characters like "tine", "tin", "tinny" etc.
 
-### String Similarity [4-5]
+### String Similarity 
 
-Trie can be used to Fast and Easy calculate Levenshtein distance.
+Trie can be used to Fast and Easy calculate Levenshtein distance [4-5].
 
 ## Example of usage
 
