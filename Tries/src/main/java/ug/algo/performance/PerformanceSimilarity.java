@@ -21,7 +21,7 @@ public class PerformanceSimilarity {
 		/**
 		 * GENERATE TRIE
 		 */
-		
+
 		// this is a case sensitive trie
 		Trie trie = new Trie(true, StandardCharsets.UTF_8);
 		System.out.println("Loading words into Trie...");
@@ -29,7 +29,7 @@ public class PerformanceSimilarity {
 			for (String line; (line = br.readLine()) != null;) {
 				// System.out.println(line);
 				String[] words = line.split(" ");
-				System.out.println("File's containing " + words.length + " words");
+				System.out.println("File's containing " + words.length + " words with duplicates");
 				// Calculate Elapsed / Execute Time
 				long startTime = System.currentTimeMillis();
 				for (int i = 0; i < words.length; i++) {
@@ -46,7 +46,7 @@ public class PerformanceSimilarity {
 			}
 
 			System.out.println("Number Of Words: " + trie.getNumberOfWords());
-			
+
 			/**
 			 * Count Words Starts With
 			 */
@@ -102,16 +102,14 @@ public class PerformanceSimilarity {
 			 * Similarity
 			 */
 			System.out.println("");
-			System.out.println("Similarity (" + MaxDistance + ") " + word);
+			System.out.println("Similarity (Distance " + MaxDistance + ") " + word);
 			// Calculate Elapsed / Execute Time
 			long startTimeSimilarity = System.currentTimeMillis();
 			Map<String, Integer> res = trie.getSimilarityMap(word, MaxDistance);
 			System.out.println("Number of words similar to word " + word + ": " + res.size());
-			/*
-			 * for (Map.Entry<String, Integer> entry :
-			 * trie.getSimilarityMap("china", 3).entrySet()) {
-			 * System.out.println(entry.getKey() + " - " + entry.getValue()); }
-			 */
+			for (Map.Entry<String, Integer> entry : res.entrySet()) {
+				System.out.println(entry.getKey() + " - " + entry.getValue());
+			}
 			long stopTimeSimilarity = System.currentTimeMillis();
 			long elapsedTimeSimilarity = stopTimeSimilarity - startTimeSimilarity;
 			System.out.println("Elapsed / Execute Time");
