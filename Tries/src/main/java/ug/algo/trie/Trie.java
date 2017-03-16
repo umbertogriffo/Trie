@@ -27,8 +27,6 @@ public class Trie {
 	private Node root;
 	// Current number of unique words in trie
 	private int numOfwords;
-	// Current number of nodes
-	private int numOfNodes;
 	// If this is a case sensitive trie
 	private boolean caseSensitive;
 	// https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html
@@ -46,7 +44,6 @@ public class Trie {
 		root = new Node();
 		root.setRoot(true);
 		setNumberOfWords(0);
-		setNumOfNodes(0);
 		setCaseSensitive(caseSensitive);
 		setCharset(charset);
 	}
@@ -63,35 +60,40 @@ public class Trie {
 		word = encodeWord(word);
 		// Case sensitive
 		word = caseSensitive(word);
+
 		Map<Character, Node> children = root.children;
 
-		Node currentParent;
-		currentParent = root;
+		// To avoid duplicates
+		if (!search(word)) {
 
-		for (int i = 0; i < word.length(); i++) {
-			char c = word.charAt(i);
-			Node node;
-			if (children.containsKey(c)) {
-				node = children.get(c);
-			} else {
-				node = new Node(c);
-				node.setRoot(false);
-				node.setParent(currentParent);
-				children.put(c, node);
-				this.numOfNodes++;
+			Node currentParent;
+			currentParent = root;
+
+			for (int i = 0; i < word.length(); i++) {
+				char c = word.charAt(i);
+				Node node;
+				if (children.containsKey(c)) {
+					node = children.get(c);
+				} else {
+					node = new Node(c);
+					node.setRoot(false);
+					node.setParent(currentParent);
+					children.put(c, node);
+				}
+
+				children = node.children;
+				currentParent = node;
+
+				// set leaf node
+				if (i == word.length() - 1) {
+					node.setLeaf(true);
+					this.numOfwords++;
+				}
+				// how many words starting with prefix
+				node.setCount(node.getCount() + 1);
 			}
-
-			children = node.children;
-			currentParent = node;
-
-			// set leaf node
-			if (i == word.length() - 1) {
-				node.setLeaf(true);
-				this.numOfwords++;
-			}
-			// how many words starting with prefix
-			node.setCount(node.getCount() + 1);
 		}
+
 	}
 
 	/**
@@ -123,7 +125,6 @@ public class Trie {
 				}
 			} else {
 				this.root.children.remove(currentNode.getC());
-				this.setNumOfNodes(this.getNumOfNodes()-1);
 			}
 		}
 
@@ -132,7 +133,6 @@ public class Trie {
 			if (currentParent.getCount() > 1 && previousWord == 1) {
 				if (currentNode.getCount() <= 1) {
 					currentParent.children.remove(currentNode.getC());
-					this.setNumOfNodes(this.getNumOfNodes()-1);
 				} else {
 					currentNode.setCount(currentNode.getCount() - 1);
 					if (currentNode.isLeaf()) {
@@ -144,14 +144,12 @@ public class Trie {
 			currentParent.setCount(currentParent.getCount() - 1);
 			if (currentParent.getCount() == 0) {
 				currentParent.children.remove(currentNode.getC());
-				this.setNumOfNodes(this.getNumOfNodes()-1);
 			}
 			currentNode = currentParent;
 			currentParent = currentNode.getParent();
 
 			if (currentParent.isRoot() && currentNode.getCount() == 0) {
 				root.children.remove(currentNode.getC());
-				this.setNumOfNodes(this.getNumOfNodes()-1);
 			}
 		}
 
@@ -405,20 +403,20 @@ public class Trie {
 		return leafNodes;
 	}
 
-	public String similarity (String word,int maxDistance) {
-		Map.Entry<String,Integer> min = null;
-		
-		Map<String, Integer> results = getSimilarityMap(word,maxDistance);
+	public String similarity(String word, int maxDistance) {
+		Map.Entry<String, Integer> min = null;
 
-	    for(Map.Entry<String,Integer> el : results.entrySet()){
-	     if(min == null || el.getValue() < min.getValue() ){
-	        min = el;
-	     }
+		Map<String, Integer> results = getSimilarityMap(word, maxDistance);
 
-	    }
-	    return min.getKey();
+		for (Map.Entry<String, Integer> el : results.entrySet()) {
+			if (min == null || el.getValue() < min.getValue()) {
+				min = el;
+			}
+
+		}
+		return min.getKey();
 	}
-	
+
 	/**
 	 * The search function returns a list of all words that are less than the
 	 * given maximum distance from the target word, using Levenshtein distance
@@ -561,14 +559,6 @@ public class Trie {
 
 	public void setCharset(Charset charset) {
 		this.charset = charset;
-	}
-
-	public int getNumOfNodes() {
-		return numOfNodes;
-	}
-
-	public void setNumOfNodes(int numOfnodes) {
-		this.numOfNodes = numOfnodes;
 	}
 
 }
