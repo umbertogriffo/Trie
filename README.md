@@ -28,16 +28,16 @@ Trie can be used to Fast and Easy calculate Levenshtein distance.
 
 ## Example of usage
 
-We can perform the follows operations:
+With this implementation you can perform the follows operations:
 
-- add a word.
-- remove a word.
-- return true if there is any word in the trie that starts with the given prefix.
-- return true if the word is in the trie.
-- count words starts with a partial name to search the application for.
-- get words starts with a partial name to search the application for.
-- show the Trie
-- calculate string similarity
+- **Add** a word.
+- **Remove** a word.
+- Return true if there is any word in the trie that starts with the given prefix.
+- Return true if the word is in the trie.
+- **Count** words starts with a partial name to search the application for.
+- Get words starts with a partial name to search the application for.
+- **Show** the Trie
+- Calculate **string similarity** using Levenshtein distance.
 
 ``` java
 
@@ -97,8 +97,8 @@ public class Demo {
 where **k** is maximum string length
 
 ## References
-- [1] https://en.wikipedia.org/wiki/Trie
-- [2] https://www.hackerrank.com/challenges/contacts
-- [3] https://www.quora.com/What-is-a-trie-What-is-its-importance-and-how-it-is-implemented
+- [1] Trie https://en.wikipedia.org/wiki/Trie
+- [2] Hackerrank challenge contacts https://www.hackerrank.com/challenges/contacts
+- [3] What is a trie? What is its importance and how it is implemented? https://www.quora.com/What-is-a-trie-What-is-its-importance-and-how-it-is-implemented
 - [4] Fast and Easy Levenshtein distance using a Trie http://stevehanov.ca/blog/index.php?id=114
-- [5] https://en.wikipedia.org/wiki/Levenshtein_distance
+- [5] Levenshtein distance https://en.wikipedia.org/wiki/Levenshtein_distance
