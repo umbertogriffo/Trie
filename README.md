@@ -32,10 +32,10 @@ With this implementation you can perform the follows operations:
 
 - **Add** a word.
 - **Remove** a word.
-- Return true if there is any word in the trie that starts with the given prefix.
-- Return true if the word is in the trie.
-- **Count** words starts with a partial name to search the application for.
-- Get words starts with a partial name to search the application for.
+- **Check** if there is any word in the trie that starts with the given **prefix**.
+- **Check** if a word is in the trie.
+- **Count words starts with a partial name** to search the application for.
+- **Get words starts with a partial name** to search the application for.
 - **Show** the Trie
 - Calculate **string similarity** using Levenshtein distance.
 
