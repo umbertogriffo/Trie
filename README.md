@@ -97,7 +97,7 @@ I've added **483.805 distinct words** into Trie and I've performed the following
 |Count Words Starts With rap|0|147|
 |Get Words Starts With rap|59| a List containing 147 words|
 |Similarity (Maximum Distance 1 from rap)|19| a Map containing 48 similar words|
-|Remove word rap|0ms| |
+|Remove word rap|0| |
 
 ``` java
 Number of words similar to word rap: 48
