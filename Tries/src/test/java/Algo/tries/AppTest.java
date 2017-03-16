@@ -2,10 +2,10 @@ package Algo.tries;
 
 import java.nio.charset.StandardCharsets;
 
-import Algo.tries.Trie;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import ug.algo.trie.Trie;
 
 /**
  * Unit test for simple App.
