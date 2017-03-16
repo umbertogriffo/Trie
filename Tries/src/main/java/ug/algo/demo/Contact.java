@@ -20,7 +20,7 @@ public class Contact {
 		trie.add("Jack");
 
 		System.out.println("Number Of Words: " + trie.getNumberOfWords());
-
+		
 		trie.show();
 
 		// Return true if the word is in the trie.
@@ -30,6 +30,10 @@ public class Contact {
 		System.out.println(trie.startsWith("Ja"));
 		// Remove a word
 		trie.remove("Johnny");
+		
+		System.out.println("Number Of Words: " + trie.getNumberOfWords());
+
+		trie.show();
 
 		// Count words starts with a partial name to search the application for
 		System.out.println("Number Of Words Starts with 'John': " + trie.countWordStartsWith("John"));
