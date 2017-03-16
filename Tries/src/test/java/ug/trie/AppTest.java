@@ -1,4 +1,4 @@
-package Algo.tries;
+package ug.trie;
 
 import java.nio.charset.StandardCharsets;
 
