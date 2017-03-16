@@ -78,11 +78,11 @@ public class Demo {
 		
 		// String Similarity using Levenshtein distance		
 		// Get words that are less than the given maximum distance from the target word
-		for (Map.Entry<String, Integer> entry : trie.getSimilarityMap("Jane", 10).entrySet()) {
+		for (Map.Entry<String, Integer> entry : trie.getSimilarityMap("Jane", 1).entrySet()) {
 			System.out.println(entry.getKey() + " - " + entry.getValue());
 		}
 		// Get word that is less than the given maximum distance from the target word
-		System.out.println(trie.similarity("Jane", 10));
+		System.out.println(trie.similarity("Jane", 1));
 	}
 }
 ``` 
