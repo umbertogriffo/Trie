@@ -93,7 +93,7 @@ I've added **483.805 distinct words** into Trie and I've performed the following
 
 |Operation|Time (msec)|Result|
 |----|----|----|
-|Loading words into Trie|2555,16|483.805|
+|Loading words into Trie|2.555,16|483.805|
 |Count Words Starts With rap|0,02|147|
 |Get Words Starts With rap|57,45| a List containing 147 words|
 |Similarity (Maximum Distance 1 from rap)|23,99| a Map containing 48 similar words|
