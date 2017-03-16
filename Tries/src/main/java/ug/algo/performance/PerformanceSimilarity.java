@@ -14,15 +14,14 @@ public class PerformanceSimilarity {
 	public static void main(String[] args) {
 
 		String word = "china";
-		int MaxDistance = 3;
+		int MaxDistance = 1;
 
 		File fileName = new File("Input/text8.txt");
 
 		/**
 		 * GENERATE TRIE
 		 */
-		// Calculate Elapsed / Execute Time
-		long startTime = System.currentTimeMillis();
+		
 		// this is a case sensitive trie
 		Trie trie = new Trie(true, StandardCharsets.UTF_8);
 		System.out.println("Loading words into Trie...");
@@ -31,21 +30,23 @@ public class PerformanceSimilarity {
 				// System.out.println(line);
 				String[] words = line.split(" ");
 				System.out.println("File's containing " + words.length + " words");
+				// Calculate Elapsed / Execute Time
+				long startTime = System.currentTimeMillis();
 				for (int i = 0; i < words.length; i++) {
 					trie.add(words[i]);
 				}
+				long stopTime = System.currentTimeMillis();
+				long elapsedTime = stopTime - startTime;
+				System.out.println("Elapsed / Execute Time");
+				System.out.println("Elapsed Time in milliseconds: " + elapsedTime);
+				System.out.println("Elapsed Time in seconds: " + (elapsedTime / 1000) % 60);
+				System.out.println("Elapsed Time in minutes: " + ((elapsedTime / (1000 * 60)) % 60));
+				System.out.println("Elapsed Time in hours: " + ((elapsedTime / (1000 * 60 * 60)) % 24));
+
 			}
 
 			System.out.println("Number Of Words: " + trie.getNumberOfWords());
-
-			long stopTime = System.currentTimeMillis();
-			long elapsedTime = stopTime - startTime;
-			System.out.println("Elapsed / Execute Time");
-			System.out.println("Elapsed Time in milliseconds: " + elapsedTime);
-			System.out.println("Elapsed Time in seconds: " + (elapsedTime / 1000) % 60);
-			System.out.println("Elapsed Time in minutes: " + ((elapsedTime / (1000 * 60)) % 60));
-			System.out.println("Elapsed Time in hours: " + ((elapsedTime / (1000 * 60 * 60)) % 24));
-
+			
 			/**
 			 * Count Words Starts With
 			 */
@@ -104,7 +105,7 @@ public class PerformanceSimilarity {
 			System.out.println("Similarity (" + MaxDistance + ") " + word);
 			// Calculate Elapsed / Execute Time
 			long startTimeSimilarity = System.currentTimeMillis();
-			Map<String, Integer> res = trie.getSimilarityMap(word, 2);
+			Map<String, Integer> res = trie.getSimilarityMap(word, MaxDistance);
 			System.out.println("Number of words similar to word " + word + ": " + res.size());
 			/*
 			 * for (Map.Entry<String, Integer> entry :
