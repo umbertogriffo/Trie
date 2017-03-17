@@ -25,9 +25,9 @@ In the **Iterative with full matrix** version of Levenshtein distance[5] we can 
 The tests have been carried out on a Laptop (Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz, 8GB RAM).
 I've added **483.805 distinct words** into Trie and I've performed the following tests using the word "rap":
 
-|Operation|Time (millisecond)|Result|
+|Operation|Time (milliseconds)|Results|
 |----|----|----|
-|Loading words into Trie|970|483.805|
+|Loading words into Trie|970|483.805 words loaded|
 |Count words starts with prefix 'rap'|0,03|147|
 |Get words starts with prefix 'rap'|1,69| a List containing 147 words|
 |String Similarity (Maximum Distance 1) from word 'rap'|22,98| a Map containing 48 similar words|
