@@ -18,7 +18,7 @@ The following picture shows a trie with the keys "Joe", "John", "Johnny", "Johnn
 The **Levenshtein distance**[5] is a string metric for measuring the difference between two words. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.
 
 ## Mixing Trie and the Levenshtein distance in order to calculate String Similarity Faster
-In the **Iterative with full matrix** version of Levenshtein distance[5] we can avoid a lot of work if we can process the words in order, so we never need to repeat a row for the same prefix of letters [4]. The trie data structure is perfect for this. 
+In the **Iterative with full matrix** version of Levenshtein distance[5] we can avoid a lot of work if we can process the words in order, so we never need to repeat a row for the same prefix of letters[4]. The trie data structure is perfect for this. 
 
 ## Performance
 
