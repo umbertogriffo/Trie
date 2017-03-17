@@ -95,7 +95,7 @@ I've added **483.805 distinct words** into Trie and I've performed the following
 |----|----|----|
 |Loading words into Trie|970|483.805|
 |Count words starts with prefix 'rap'|0,03|147|
-|Get words starts with prefix 'rap'|61,45| a List containing 147 words|
+|Get words starts with prefix 'rap'|1,69| a List containing 147 words|
 |Similarity (Maximum Distance 1) from word rap|22,98| a Map containing 48 similar words|
 |Remove word rap|0,04| |
 
