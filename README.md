@@ -93,10 +93,10 @@ I've added **483.805 distinct words** into Trie and I've performed the following
 
 |Operation|Time (msec)|Result|
 |----|----|----|
-|Loading words into Trie|2.555,16|483.805|
-|Count Words Starts With rap|0,02|147|
-|Get Words Starts With rap|57,45| a List containing 147 words|
-|Similarity (Maximum Distance 1 from rap)|23,99| a Map containing 48 similar words|
+|Loading words into Trie|1.355|483.805|
+|Count words starts with prefix 'rap'|0,02|147|
+|Get words starts with prefix 'rap'|64,45| a List containing 147 words|
+|Similarity (Maximum Distance 1) from word rap|18,64| a Map containing 48 similar words|
 |Remove word rap|0,10| |
 
 ``` java
