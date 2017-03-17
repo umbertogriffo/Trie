@@ -91,7 +91,7 @@ public class Demo {
 The tests have been carried out on a Laptop (Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz, 8GB RAM).
 I've added **483.805 distinct words** into Trie and I've performed the following tests using the word "rap":
 
-|Operation|Time (msec)|Result|
+|Operation|Time (millisecond)|Result|
 |----|----|----|
 |Loading words into Trie|970|483.805|
 |Count words starts with prefix 'rap'|0,03|147|
