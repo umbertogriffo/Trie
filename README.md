@@ -2,6 +2,8 @@
 * Author: Umberto Griffo
 * Twitter: @UmbertoGriffo
 
+## Trie definition
+
 **Trie**[1] is an ordered tree data structure that uses strings as keys. It's an efficient information retrieval data structure that we can use to search a word in **O(M)** time, where **M** is maximum string length. However the penalty is on trie storage requirements.
 A common application of a **trie** is storing a **predictive text** or **autocomplete dictionary**, such as found on a mobile telephone.
 Such applications take advantage of a trie's ability to quickly search for, insert, and delete entries.
@@ -10,6 +12,34 @@ The following picture shows a trie with the keys "Joe", "John", "Johnny", "Johnn
 <p align="center">
   <img src="https://github.com/umbertogriffo/Trie/blob/master/Trie_example.png" height="330" width="330" />
 </p>
+
+## Levenshtein distance definition
+
+The **Levenshtein distance**[5] is a string metric for measuring the difference between two words. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.
+
+## Mixing Trie and the Levenshtein distance in order to calculate String Similarity Faster
+In the **Iterative with full matrix** version of Levenshtein distance[5] we can avoid a lot of work if we can process the words in order, so we never need to repeat a row for the same prefix of letters [4]. The trie data structure is perfect for this. 
+
+## Performance
+
+The tests have been carried out on a Laptop (Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz, 8GB RAM).
+I've added **483.805 distinct words** into Trie and I've performed the following tests using the word "rap":
+
+|Operation|Time (millisecond)|Result|
+|----|----|----|
+|Loading words into Trie|970|483.805|
+|Count words starts with prefix 'rap'|0,03|147|
+|Get words starts with prefix 'rap'|1,69| a List containing 147 words|
+|String Similarity (Maximum Distance 1) from word 'rap'|22,98| a Map containing 48 similar words|
+|Remove word rap|0,04| |
+
+## Complexity (Average)
+
+|Access|Search|Insertion|Deletion|String Similarity|
+|----|----|----|----|----|
+|O(k)|O(k)|O(k)|O(k)|O(k*n)|
+
+where **k** is maximum string length and **n** is number of nodes in the trie
 
 ## Use Case
 
@@ -24,7 +54,7 @@ If we search for word "tiny", then it auto suggest words starting with same char
 
 ### String Similarity 
 
-Trie can be used to Fast and Easy calculate Levenshtein distance [4-5].
+Trie can be used to Fast and Easy calculate Levenshtein distance [4].
 
 ## Example of usage
 
@@ -86,26 +116,6 @@ public class Demo {
 	}
 }
 ``` 
-## Performance
-
-The tests have been carried out on a Laptop (Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz, 8GB RAM).
-I've added **483.805 distinct words** into Trie and I've performed the following tests using the word "rap":
-
-|Operation|Time (millisecond)|Result|
-|----|----|----|
-|Loading words into Trie|970|483.805|
-|Count words starts with prefix 'rap'|0,03|147|
-|Get words starts with prefix 'rap'|1,69| a List containing 147 words|
-|Similarity (Maximum Distance 1) from word rap|22,98| a Map containing 48 similar words|
-|Remove word rap|0,04| |
-
-## Complexity (Average)
-
-|Access|Search|Insertion|Deletion|String Similarity|
-|----|----|----|----|----|
-|O(k)|O(k)|O(k)|O(k)|O(k*n)|
-
-where **k** is maximum string length and **n** is number of nodes in the trie
 
 ## References
 - [1] Trie https://en.wikipedia.org/wiki/Trie
