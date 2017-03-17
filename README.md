@@ -1,4 +1,4 @@
-# A Trie implementation in Java
+# A Mixed Trie and Levenshtein distance implementation in Java
 * Author: Umberto Griffo
 * Twitter: @UmbertoGriffo
 
