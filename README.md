@@ -99,60 +99,6 @@ I've added **483.805 distinct words** into Trie and I've performed the following
 |Similarity (Maximum Distance 1) from word rap|18,64| a Map containing 48 similar words|
 |Remove word rap|0,04| |
 
-``` java
-Number of words similar to word rap: 48
-Rap - 1
-rapt - 1
-raps - 1
-Yap - 1
-frap - 1
-bap - 1
-rape - 1
-dap - 1
-rab - 1
-cap - 1
-rad - 1
-hap - 1
-gap - 1
-reap - 1
-jap - 1
-rah - 1
-rip - 1
-rag - 1
-lap - 1
-raj - 1
-trap - 1
-nap - 1
-rep - 1
-map - 1
-pap - 1
-ran - 1
-ram - 1
-rap - 0
-tap - 1
-sap - 1
-rat - 1
-ras - 1
-ramp - 1
-wap - 1
-rax - 1
-zap - 1
-raw - 1
-yap - 1
-ray - 1
-ap - 1
-ra - 1
-Bap - 1
-crap - 1
-Jap - 1
-rasp - 1
-Nap - 1
-Map - 1
-wrap - 1
-Elapsed / Execute Time
-Elapsed Time in milliseconds: 19
-```
-
 ## Complexity (Average)
 
 |Access|Search|Insertion|Deletion|String Similarity|
