@@ -1,7 +1,6 @@
 package ug.algo.trie;
 
-import java.util.HashMap;
-import java.util.Map;
+import it.unimi.dsi.fastutil.chars.Char2ObjectAVLTreeMap;
 
 public class Node{
 
@@ -12,9 +11,9 @@ public class Node{
     private boolean isLeaf;
 	private boolean isRoot;
     private Node parent;
-
-    Map<Character, Node> children = new HashMap<Character, Node>();
-
+    //Map<Character, Node> children = new HashMap<Character, Node>();
+    Char2ObjectAVLTreeMap<Node> children = new Char2ObjectAVLTreeMap<Node>();
+  
     public Node() {
         setCount(0);
         setVisited(false);
