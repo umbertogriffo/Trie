@@ -1,4 +1,4 @@
-# A Mixed Trie and Levenshtein distance implementation in Java
+# A Mixed Trie and Levenshtein distance implementation in Java for extremely fast prefix string searching and string similarity.
 * Author: Umberto Griffo
 * Twitter: @UmbertoGriffo
 
