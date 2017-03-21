@@ -24,10 +24,10 @@ public class Contact {
 		trie.show();
 
 		// Return true if the word is in the trie.
-		System.out.println(trie.search("Jane",true));
+		System.out.println(trie.search("Jane"));
 		// Return true if there is any word in the trie that starts with the
 		// given prefix.
-		System.out.println(trie.startsWith("Ja",true));
+		System.out.println(trie.startsWith("Ja"));
 		// Remove a word
 		trie.remove("Johnny");
 		

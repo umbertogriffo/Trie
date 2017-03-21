@@ -20,14 +20,13 @@ public class Similarity {
 		trie.add("Jack");
 
 		System.out.println("Number Of Words: " + trie.getNumberOfWords());
-		
+
 		System.out.println("Jane Sim: ");
-		for (Map.Entry<String, Integer> entry : trie.getSimilarityMap("Jane", 10).entrySet()) {
+		for (Map.Entry<String, Integer> entry : trie.getSimilarityMap("Jane", 2).entrySet()) {
 			System.out.println(entry.getKey() + " - " + entry.getValue());
 		}
-		
-		System.out.println(trie.similarity("Jane", 10));
-		
+
+		//System.out.println(trie.similarity("Jane", 2));
 
 	}
 }

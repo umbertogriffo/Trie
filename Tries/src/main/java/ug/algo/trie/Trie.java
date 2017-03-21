@@ -175,7 +175,20 @@ public class Trie {
 		}
 		return node;
 	}
+	
+	/**
+	 * Returns if there is any word in the trie that starts with the given
+	 * prefix.
+	 * 
+	 * @param prefix
+	 * @param doPreprocess
+	 * @return true|false
+	 */
+	public boolean startsWith(String prefix) {
 
+			return startsWith(prefix, true);
+	}
+	
 	/**
 	 * Returns if there is any word in the trie that starts with the given
 	 * prefix.
@@ -194,6 +207,16 @@ public class Trie {
 			return true;
 	}
 
+	/**
+	 * Returns if the word is in the trie.
+	 * 
+	 * @param word
+	 * @return true|false
+	 */
+	public boolean search(String word) {
+		return search(word, true);
+	}
+	
 	/**
 	 * Returns if the word is in the trie.
 	 * 
@@ -402,7 +425,11 @@ public class Trie {
 	 */
 	public Map<String, Integer> RecursiveLevenshteinDistance(Node node, char letter, String word,
 			Vector<Integer> previousRow, Map<String, Integer> results, int maxDistance) {
-
+		
+		//System.out.println("trie letter "+letter);
+		//System.out.print("previous ");
+		//printVector(previousRow);
+		
 		int columns = previousRow.size();
 		Vector<Integer> currentRow = new Vector<Integer>(previousRow.size());
 		currentRow.add(0, previousRow.get(0) + 1);
@@ -413,7 +440,6 @@ public class Trie {
 		for (int i = 1; i < columns; i++) {
 			insertCost = currentRow.get(i - 1) + 1;
 			deleteCost = previousRow.get(i) + 1;
-
 			if (word.charAt(i - 1) != letter) {
 				replaceCost = previousRow.get(i - 1) + 1;
 			} else {
@@ -421,8 +447,12 @@ public class Trie {
 			}
 
 			currentRow.add(i, Math.min(insertCost, Math.min(deleteCost, replaceCost)));
-
+			//printVector(currentRow);
 		}
+		
+		//System.out.print("currentRow ");
+		//printVector(currentRow);
+		
 		// If the last entry in the row indicates the optimal cost is less than
 		// the maximum distance, and there is a word in this trie node, then add
 		// it.
@@ -577,6 +607,16 @@ public class Trie {
 
 	public void setCharset(Charset charset) {
 		this.charset = charset;
+	}
+	
+	public void printVector(Vector<Integer> vec){
+		StringBuilder sb = new StringBuilder();
+		String separator = "";
+		for(Integer el : vec){
+			sb.append(separator).append(el.intValue());
+			separator = ",";
+		}
+		System.out.println(sb.toString());
 	}
 
 }
