@@ -20,6 +20,26 @@ The **Levenshtein distance**[5] is a string metric for measuring the difference 
 ## Mixing Trie and the Levenshtein distance in order to calculate String Similarity Faster
 In the **Iterative with full matrix** version of Levenshtein distance[5] we can avoid a lot of work if we can process the words in order, so we never need to repeat a row for the same prefix of letters[4]. The trie data structure is perfect for this. 
 
+If I have a trie with the words "Joe", "John", "Johnny", "Johnny", "Jane", and "Jack" the following table shows the resulting matrix containing words that are less than the given maximum distance (equal to 2) from the target word "Jane":
+
+| | |J|a|n|e|
+|----|----|----|----|----|----|
+| |0|1|2|3|4|
+|J|1|0|1|2|3|
+|a|2|1|0|1|2|
+|c|3|2|1|1|2|
+|**k(*)**|**4**|**3**|**2**|**2**|**2**|
+|n|3|2|1|0|1|
+|**e(*)**|**4**|**3**|**2**|**1**|**0**|
+|o|2|1|1|2|3|
+|**e(*)**|**3**|**2**|**2**|**2**|**2**|
+|h|3|2|2|2|3|
+|n(*)|4|3|3|2|2|
+|n|5|4|4|3|3|
+|y(*)|5|4|4|3|4|
+
+Each right element of the array contains the distance.
+
 ## Performance
 
 The tests have been carried out on a Laptop (Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz, 8GB RAM).
