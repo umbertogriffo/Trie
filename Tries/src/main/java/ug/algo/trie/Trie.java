@@ -1,7 +1,6 @@
 package ug.algo.trie;
 
 import java.nio.charset.Charset;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +9,7 @@ import java.util.Stack;
 import java.util.Vector;
 import java.util.stream.Stream;
 
+import com.google.common.primitives.Ints;
 import it.unimi.dsi.fastutil.chars.Char2ObjectAVLTreeMap;
 
 /**
@@ -397,16 +397,16 @@ public class Trie {
 		int size = word.length();
 
 		// build first row
-		Vector<Integer> currentRow = new Vector<Integer>(size + 1);
+		int[] currentRow = new int[size + 1];
 
 		for (int i = 0; i <= size; ++i) {
-			currentRow.insertElementAt(i, i);
+			currentRow[i] = i;
 		}
 
 		// recursively search each branch of the trie
 		for (Map.Entry<Character, Node> entry : root.children.entrySet()) {
 			results.putAll(RecursiveLevenshteinDistance(entry.getValue(), entry.getValue().getC(), word, currentRow,
-					results, maxDistance));
+					maxDistance));
 		}
 
 		return results;
@@ -419,34 +419,33 @@ public class Trie {
 	 * @param letter
 	 * @param word
 	 * @param previousRow
-	 * @param results
 	 * @param maxDistance
 	 * @return
 	 */
 	public Map<String, Integer> RecursiveLevenshteinDistance(Node node, char letter, String word,
-			Vector<Integer> previousRow, Map<String, Integer> results, int maxDistance) {
+			int[] previousRow, int maxDistance) {
 		
 		//System.out.println("trie letter "+letter);
 		//System.out.print("previous ");
 		//printVector(previousRow);
-		
-		int columns = previousRow.size();
-		Vector<Integer> currentRow = new Vector<Integer>(previousRow.size());
-		currentRow.add(0, previousRow.get(0) + 1);
+		Map<String, Integer> results = new HashMap<>();
+		int columns = previousRow.length;
+		int[] currentRow = new int[previousRow.length];
+		currentRow[0] = previousRow[0] + 1;
 		// Build one row for the letter, with a column for each letter in the
 		// target word, plus one for the empty string at column 0
 		// Calculate the min cost of insertion, deletion, match or substution
 		int insertCost, deleteCost, replaceCost;
 		for (int i = 1; i < columns; i++) {
-			insertCost = currentRow.get(i - 1) + 1;
-			deleteCost = previousRow.get(i) + 1;
+			insertCost = currentRow[i - 1] + 1;
+			deleteCost = previousRow[i] + 1;
 			if (word.charAt(i - 1) != letter) {
-				replaceCost = previousRow.get(i - 1) + 1;
+				replaceCost = previousRow[i - 1] + 1;
 			} else {
-				replaceCost = previousRow.get(i - 1);
+				replaceCost = previousRow[i - 1];
 			}
 
-			currentRow.add(i, Math.min(insertCost, Math.min(deleteCost, replaceCost)));
+			currentRow[i] = Math.min(insertCost, Math.min(deleteCost, replaceCost));
 			//printVector(currentRow);
 		}
 		
@@ -456,7 +455,7 @@ public class Trie {
 		// If the last entry in the row indicates the optimal cost is less than
 		// the maximum distance, and there is a word in this trie node, then add
 		// it.
-		if (currentRow.lastElement() <= maxDistance && node.isLeaf()) {
+		if (currentRow[currentRow.length - 1] <= maxDistance && node.isLeaf()) {
 			Node currentParent = node.getParent();
 			StringBuilder wordBuilder = new StringBuilder();
 			while (currentParent != null) {
@@ -465,17 +464,16 @@ public class Trie {
 				}
 				currentParent = currentParent.getParent();
 			}
-			results.put(wordBuilder.reverse().append(node.getC()).toString(), currentRow.lastElement());
+			results.put(wordBuilder.reverse().append(node.getC()).toString(), currentRow[currentRow.length - 1]);
 		}
 
 		// If any entries in the row are less than the maximum distance, then
 		// recursively search each branch of the trie.
-		Object obj = Collections.min(currentRow);
-		Integer i = new Integer((int) obj);
-		if (i.intValue() <= maxDistance) {
+		int i = Ints.min(currentRow);
+		if (i <= maxDistance) {
 			for (Map.Entry<Character, Node> entry : node.children.entrySet()) {
 				results.putAll(RecursiveLevenshteinDistance(entry.getValue(), entry.getValue().getC(), word, currentRow,
-						results, maxDistance));
+						maxDistance));
 			}
 		}
 
