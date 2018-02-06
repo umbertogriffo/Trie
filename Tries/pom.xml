@@ -34,6 +34,13 @@
 			<artifactId>fastutil</artifactId>
 			<version>7.1.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>24.0-jre</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
