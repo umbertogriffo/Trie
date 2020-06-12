@@ -1,3 +1,5 @@
+![Java CI with Maven](https://github.com/umbertogriffo/Trie/workflows/Java%20CI%20with%20Maven/badge.svg)
+	
 # A Mixed Trie and Levenshtein distance implementation in Java for extremely fast prefix string searching and string similarity.
 * Author: Umberto Griffo
 * Twitter: @UmbertoGriffo
