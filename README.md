@@ -4,6 +4,20 @@
 * Author: Umberto Griffo
 * Twitter: @UmbertoGriffo
 
+## Contents
+
+- [Trie definition](#trie-definition)
+- [Levenshtein distance definition](#levenshtein-distance-definition)
+- [Mixing Trie and the Levenshtein distance in order to calculate String Similarity Faster](#mixing-trie-and-the-levenshtein-distance-in-order-to-calculate-string-similarity-faster)
+- [Performance](#performance)
+- [Complexity](#complexity)
+- [Use Case](#use-case)
+    - [Dictionary Suggestions OR Autocomplete dictionary](#dictionary-suggestions-or-autocomplete-dictionary)
+    - [Searching Contact from Mobile Contact list OR Phone Directory](#searching-contact-from-mobile-contact-list-or-phone-directory)
+    - [String Similarity](#string-similarity)
+- [Example of usage](#example-of-usage)
+- [References](#references)
+
 ## Trie definition
 
 **Trie**[1] is an ordered tree data structure that uses strings as keys. It's an efficient information retrieval data structure that we can use to search a word in **O(M)** time, where **M** is maximum string length. However the penalty is on trie storage requirements.
@@ -55,8 +69,8 @@ I've added **483.805 distinct words** into Trie and I've performed the following
 |String Similarity (Maximum Distance 1) from word 'rap'|22,98| a Map containing 48 similar words|
 |Remove word rap|0,04| |
 
-## Complexity (Average)
-
+## Complexity
+Average:
 |Access|Search|Insertion|Deletion|String Similarity|
 |----|----|----|----|----|
 |O(k)|O(k)|O(k)|O(k)|O(k*n)|
