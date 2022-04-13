@@ -153,6 +153,10 @@ public class Demo {
 }
 ``` 
 
+## Who is citing this work?
+
+* On page 48 of [Intelligent Data Engineering and Automated Learning – IDEAL 2021: 22nd International Conference, IDEAL 2021, Manchester, UK, November 25–27, 2021, Proceedings ... Notes in Computer Science Book 13113)](https://books.google.pt/books?id=TaxQEAAAQBAJ&pg=PA48&dq=umberto+griffo&hl=en&sa=X&ved=2ahUKEwjVoZzmio_3AhVICxoKHUsrBf8Q6AF6BAgJEAI#v=onepage&q=umberto%20griffo&f=false)
+
 ## References
 - [1] Trie https://en.wikipedia.org/wiki/Trie
 - [2] Hackerrank challenge contacts https://www.hackerrank.com/challenges/contacts
