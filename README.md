@@ -156,6 +156,7 @@ public class Demo {
 ## Who is citing this work?
 
 * On page 48 of [Intelligent Data Engineering and Automated Learning – IDEAL 2021: 22nd International Conference, IDEAL 2021, Manchester, UK, November 25–27, 2021, Proceedings ... Notes in Computer Science Book 13113)](https://books.google.pt/books?id=TaxQEAAAQBAJ&pg=PA48&dq=umberto+griffo&hl=en&sa=X&ved=2ahUKEwjVoZzmio_3AhVICxoKHUsrBf8Q6AF6BAgJEAI#v=onepage&q=umberto%20griffo&f=false)
+	* This implementation has been benchmarked in a paper to define which algorithm would be faster in a Spell Checker System. Surprisingly, my implementation performed the best in both sequential and parallel versions for a large amount of misspelt words 🚀.
 
 ## References
 - [1] Trie https://en.wikipedia.org/wiki/Trie
